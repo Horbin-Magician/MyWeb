@@ -1,3 +1,7 @@
-Client/node_modules/
-Server/datas/
-*/__pycache__/
+#Useless
+node_modules/
+datas/
+__pycache__/
+#Server Setting
+uwsgi.ini
+venv/
