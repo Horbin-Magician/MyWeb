@@ -9,34 +9,28 @@ import './favourites.less'
 头部组件
  */
 const { Content } = Layout;
-
-
 export default class Favourites extends Component{
     state = {
         theme:'light',
         itemList: [],
     }
-
+    //同步并设置itemList和favType
     onFavTypeChange = async(favType)=>{
         const data = await reqFavItemList(favType)
         const itemList = data.data
         this.setState({itemList:itemList, favType:favType})
     }
 
-    update = async()=>{
-        const data = await reqFavItemList(this.state.favType)
-        const itemList = data.data
-        this.setState({itemList:itemList})
-    }
-
     render(){
+        const {favType} = this.state
         return(
             <Layout className="favourites">
                 <LeftNav onFavTypeChange={this.onFavTypeChange}/>
                 <Layout>
                     <Content className="favourites-content">
                         <CardContent itemList={this.state.itemList}
-                        favType={this.state.favType} update={this.update}/>
+                        favType={this.state.favType}
+                        update={()=>this.onFavTypeChange(favType)}/>
                     </Content>
                 </Layout>
             </Layout>

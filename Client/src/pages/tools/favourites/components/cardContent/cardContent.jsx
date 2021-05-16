@@ -16,7 +16,7 @@ export default class CardContent extends Component{
     }
     formRef = React.createRef()
     oldUrl = ''
-
+    //根据itemList获取card节点
     getCardNodes = (itemList)=>{
         return itemList.map(item => {
             return(
@@ -28,37 +28,39 @@ export default class CardContent extends Component{
             )
         })
     }
-
+    //更新item
     updateItem = ()=>{
         this.formRef.current.validateFields().then(values => {
             const {url, title, description, type, rank} = values
             reqUpdateItem(url, type, title, rank, description, this.oldUrl).then(data=>{
                 if(data.status==='0'){
                     this.props.update()
-                    this.afterAdd()
+                    this.afterUpdate()
                     message.success('添加成功！')
                 }
             })
         }).catch(info => message.error('请正确填写信息！'));
     }
-
-    onEdit = (url, title, description, type, rank)=>{
-        this.oldUrl = url
-        reqFavTypeList().then(data=>{
-            let typeOptions = data.data.map(item => {
-                return <Option key={item.title} value={item.title}>{item.title}</Option>
-            })
-            this.formRef.current.setFieldsValue({url, title, description, type, rank})
-            this.setState({typeOptions:typeOptions, showStatus:1})
-        })
-    }
-
-    afterAdd = ()=>{
+    //更新item后的收尾工作
+    afterUpdate = ()=>{
         this.setState({showStatus:0})
         this.formRef.current.resetFields();
         this.oldUrl = ''
     }
-
+    //开始编辑item
+    onEdit = (url, title, description, type, rank)=>{
+        this.oldUrl = url
+        reqFavTypeList().then(data=>{
+            //获取并设置typeOptions
+            let typeOptions = data.data.map(item => {
+                return <Option key={item.title} value={item.title}>{item.title}</Option>
+            })
+            //初始化其他信息
+            this.formRef.current.setFieldsValue({url, title, description, type, rank})
+            this.setState({typeOptions:typeOptions, showStatus:1})
+        })
+    }
+    
     render(){
         const {itemList} = this.props
         const cardNodes = this.getCardNodes(itemList)
