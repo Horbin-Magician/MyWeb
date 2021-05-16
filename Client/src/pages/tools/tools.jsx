@@ -16,7 +16,6 @@ export default class Tools extends Component {
           <Redirect to='/'/>
         </Switch>
       </div>
-
      );
   }
 }

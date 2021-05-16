@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { HomeOutlined, ToolOutlined, QuestionCircleOutlined } from '@ant-design/icons'
-import { Menu } from 'antd';
-import './header.less'
+import {Link, withRouter} from 'react-router-dom'
+import {HomeOutlined, ToolOutlined, QuestionCircleOutlined} from '@ant-design/icons'
+import {Menu} from 'antd';
 /*
 头部组件
  */
-const { SubMenu,Item } = Menu
+const {SubMenu,Item} = Menu
 class Header extends Component{
     render(){
+        //根据url获取nowKey
         const url = this.props.history.location.pathname.split('/')
         const nowKey = url[url.length-1] === '' ? 'home' : url[url.length-1]
         return(
