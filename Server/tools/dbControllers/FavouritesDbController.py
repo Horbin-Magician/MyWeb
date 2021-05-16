@@ -169,5 +169,3 @@ class FavouritesDbController():
 # test code
 if __name__ == '__main__':
     fDb = FavouritesDbController()
-    fDb.updateItem('https://www.baidu.com/', '常用', '123', 2, '123')
-    fDb.updateItem('https://www.bilibili.com/', '常用', '123', 3, 'bilibili是国内知名的视频弹幕网站，这里有及时的动漫新番，活跃的ACG氛围，有创意的Up主。大家可以在这里找到许多欢乐。')
