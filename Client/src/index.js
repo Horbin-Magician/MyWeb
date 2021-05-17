@@ -5,12 +5,10 @@ import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 
 import App from './App';
-import memoryUtils from './utils/memoryUtils'
-import storageUtils from './utils/storageUtils'
+import {initUser} from './utils/userUtils'
 
-//读取local中保存的user，保存到内存中
-const user = storageUtils.getUser()
-if(user)memoryUtils.userdata = user
+
+initUser()//初始化User信息
 
 ReactDOM.render(
   <ConfigProvider locale={zhCN}><App /></ConfigProvider>,

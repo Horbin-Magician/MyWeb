@@ -1,10 +1,8 @@
 import {Component} from 'react'
-import {Form, Input, Button, message, Modal} from 'antd';
+import {Form, Input, Button, Modal} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 
-import {reqLogin} from '../../api'
-import memoryUtils from '../../utils/memoryUtils'
-import storageUtils from '../../utils/storageUtils'
+import {userlogin} from '../../utils/userUtils'
 
 /*
 登录页的路由组件
@@ -12,24 +10,11 @@ import storageUtils from '../../utils/storageUtils'
 export default class LoginModal extends Component {
   onFinish = async (values) => {
     const {username, password} = values
-    const data = await reqLogin(username, password)
-    if(data && data.status === '0'){//登入成功
-      message.success('登录成功，欢迎回来～')
-      memoryUtils.userdata = {username, password}
-      storageUtils.saveUser({username, password})
-      this.props.switchShow()
-    }else{//账号或密码错误
-      message.error('登录失败，账号或密码错误！')
-    }
+    const data = await userlogin(username, password)
+    if(data && data.status === '0')this.props.switchShow()
   };
 
   render() {
-    //判断是否已经登录
-    const userdata = memoryUtils.userdata 
-    if(userdata.username && this.props.showLogin){
-      message.info('已经登录，请勿重复登录！')
-      this.props.switchShow()
-    }
     return (
         <Modal title='用户登录'
         visible={this.props.showLogin} onCancel={this.props.switchShow}

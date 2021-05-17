@@ -6,6 +6,7 @@ import {
   } from '@ant-design/icons';
 
 import {reqFavTypeList, reqDelType, reqUpdateType, reqMoveType} from '../../../../../api'
+import {checkLogin} from '../../../../../utils/userUtils'
 import FavInput from '../favInput'
 import FavMenu from '../favMenu'
 /*
@@ -159,7 +160,7 @@ export default class LeftNav extends Component{
                         <FavInput editFavType={this.addFavType}/>
                     </Menu.Item>
                 </Menu>
-                <div>
+                <div style = {checkLogin() ? {display : 'block'} : {display : 'none'}}>
                     <Button type='link' style={{width:"50%"}} onClick={this.onAdd}>
                         <PlusCircleOutlined style={{ fontSize: '20px'}}/>
                     </Button>

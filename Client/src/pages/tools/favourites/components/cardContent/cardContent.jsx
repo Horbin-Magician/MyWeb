@@ -4,6 +4,7 @@ import { PlusOutlined } from '@ant-design/icons'
 
 import FavouritesCard from '../favCard/favCard'
 import {reqUpdateItem, reqFavTypeList} from '../../../../../api'
+import {checkLogin} from '../../../../../utils/userUtils'
 
 /*
 左侧导航的组件
@@ -68,11 +69,13 @@ export default class CardContent extends Component{
             <div>
                 <Row gutter={[16, 24]}>
                     {cardNodes}
-                    <Tooltip title="添加一个">
-                        <Button icon={<PlusOutlined style={{fontSize:'50px', color:'#C0C0C0'}}/>} 
-                        style={{height:'180px', width:'180px'}}
-                        onClick={()=>{this.onEdit('', '', '', this.props.favType, 3)}}/>
-                    </Tooltip>
+                    <div style = {checkLogin() ? {display : 'block'} : {display : 'none'}}>
+                        <Tooltip title="添加一个" >
+                            <Button icon={<PlusOutlined style={{fontSize:'50px', color:'#C0C0C0'}}/>} 
+                            style={{height:'180px', width:'180px'}}
+                            onClick={()=>{this.onEdit('', '', '', this.props.favType, 3)}}/>
+                        </Tooltip>
+                    </div>
                 </Row>
                 <Modal forceRender title='收藏项信息' visible={this.state.showStatus===1} 
                 onOk={()=>{this.updateItem()}} onCancel={this.afterAdd}>

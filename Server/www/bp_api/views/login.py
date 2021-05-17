@@ -22,5 +22,4 @@ class LoginView(views.View):
         return_dict['status'] = '0'
         return_dict['username'] = username
         return_dict['authority'] = userData[2]
-
     return json.dumps(return_dict)

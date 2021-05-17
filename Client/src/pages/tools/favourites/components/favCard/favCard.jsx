@@ -3,6 +3,7 @@ import {Card, Avatar, Rate, message, Modal} from 'antd';
 import {EditOutlined, DeleteOutlined, FrownOutlined} from '@ant-design/icons';
 
 import {reqUpdateItem, reqDelItem} from '../../../../../api'
+import {checkLogin} from '../../../../../utils/userUtils'
 import './favCard.less'
 
 /*
@@ -41,11 +42,11 @@ export default class FavouritesCard extends Component{
         return(
             <Card style={{maxWidth:'550px', minWidth:'200px'}}
             headStyle={{minHeight:"36px"}} 
-            actions={[
+            actions={checkLogin() ? [
                 <EditOutlined key="edit" onClick={this.onEdit}/>,
                 <DeleteOutlined key="delete" onClick={this.onDel}/>,
-            ]}
-            title={<Rate defaultValue={rank} onChange={this.onRankChange} 
+            ] : []}
+            title={<Rate disabled={!checkLogin()}  defaultValue={rank} onChange={this.onRankChange} 
                     style={{width:'100%', textAlign:"center"}}/>}
             hoverable={true}
             >
