@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
-import {HomeOutlined, ToolOutlined, QuestionCircleOutlined, UserOutlined} from '@ant-design/icons'
-import {Menu, Row, Col, Button} from 'antd';
+import {HomeOutlined, ToolOutlined, QuestionCircleOutlined, UserOutlined, MenuOutlined} from '@ant-design/icons'
+import {Menu, Row, Col, Button, Modal} from 'antd';
 
 import LoginModal from '../loginModal/loginModal'
+import memoryUtils from '../../utils/memoryUtils'
+import storageUtils from '../../utils/storageUtils'
 import './header.less'
 /*
 头部组件
@@ -15,7 +17,19 @@ class Header extends Component{
     }
 
     onUserClick = ()=>{
-        this.switchLoginShow()
+        if(memoryUtils.userdata.username){
+            //退出登录
+            Modal.confirm({
+                title: '是否确认退出？',
+                onOk: () => {
+                    //删除保存的数据
+                    storageUtils.removeUser()
+                    memoryUtils.userdata = {}
+                },
+            })
+        }
+        if(!memoryUtils.userdata.username)
+            this.switchLoginShow()
     }
 
     switchLoginShow = ()=>this.setState({showLogin:!this.state.showLogin,})
@@ -24,6 +38,11 @@ class Header extends Component{
         //根据url获取nowKey
         const url = this.props.history.location.pathname.split('/')
         const nowKey = url[url.length-1] === '' ? 'home' : url[url.length-1]
+        //判断是否已经登录
+        let userIcon = <UserOutlined />
+        if(memoryUtils.userdata.username){
+            userIcon = <MenuOutlined />
+        }
         return(
             <Row className='header'>
                 <Col>
@@ -43,7 +62,7 @@ class Header extends Component{
                 </Col>
                 <Col>
                     <Button type="primary" shape='circle' onClick={this.onUserClick}>
-                        <UserOutlined />
+                        {userIcon}
                     </Button>
                 </Col>
                 <LoginModal switchShow={this.switchLoginShow} showLogin={this.state.showLogin}/>

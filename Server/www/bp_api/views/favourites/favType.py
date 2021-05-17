@@ -1,5 +1,4 @@
-from flask import views
-from flask import request
+from flask import views,request,session
 import json
 
 from tools.dbControllers.FavouritesDbController import FavouritesDbController
@@ -24,22 +23,23 @@ class FavTypeView(views.View):
           return_datas.append(return_data)
         return_dict['status'] = '0'
         return_dict['data'] = return_datas
-    if(type == 'update'):
-        title = request.json.get('title')
-        rank = request.json.get('rank')
-        oldTitle = request.json.get('oldTitle')
-        if(oldTitle):
-            db.updateType(title, rank, oldTitle)
-        else:
-            db.updateType(title, rank)
-        return_dict['status'] = '0'
-    if(type == 'del'):
-        title = request.json.get('title')
-        db.delType(title)
-        return_dict['status'] = '0'
-    if(type == 'move'):
-        fType = request.json.get('fType')
-        tType = request.json.get('tType')
-        db.moveTypeData(fType, tType)
-        return_dict['status'] = '0'
+    if(session.get('user_info')):
+        if(type == 'update'):
+            title = request.json.get('title')
+            rank = request.json.get('rank')
+            oldTitle = request.json.get('oldTitle')
+            if(oldTitle):
+                db.updateType(title, rank, oldTitle)
+            else:
+                db.updateType(title, rank)
+            return_dict['status'] = '0'
+        if(type == 'del'):
+            title = request.json.get('title')
+            db.delType(title)
+            return_dict['status'] = '0'
+        if(type == 'move'):
+            fType = request.json.get('fType')
+            tType = request.json.get('tType')
+            db.moveTypeData(fType, tType)
+            return_dict['status'] = '0'
     return json.dumps(return_dict)

@@ -1,5 +1,4 @@
-from flask import views
-from flask import request
+from flask import views,request,session
 import json
 
 from tools.dbControllers.BaseDbController import BaseDbController
@@ -19,6 +18,7 @@ class LoginView(views.View):
     if(len(data) == 1):
       userData = data[0]
       if(username == userData[0] and password == userData[1]):
+        session['user_info'] = username
         return_dict['status'] = '0'
         return_dict['username'] = username
         return_dict['authority'] = userData[2]

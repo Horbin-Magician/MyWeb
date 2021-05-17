@@ -15,8 +15,9 @@ export default class LoginModal extends Component {
     const data = await reqLogin(username, password)
     if(data && data.status === '0'){//登入成功
       message.success('登录成功，欢迎回来～')
-      memoryUtils.userdata = data
-      storageUtils.saveUser(data)
+      memoryUtils.userdata = {username, password}
+      storageUtils.saveUser({username, password})
+      this.props.switchShow()
     }else{//账号或密码错误
       message.error('登录失败，账号或密码错误！')
     }
@@ -25,7 +26,7 @@ export default class LoginModal extends Component {
   render() {
     //判断是否已经登录
     const userdata = memoryUtils.userdata 
-    if(userdata && userdata.status === '0' && this.props.showLogin){
+    if(userdata.username && this.props.showLogin){
       message.info('已经登录，请勿重复登录！')
       this.props.switchShow()
     }
