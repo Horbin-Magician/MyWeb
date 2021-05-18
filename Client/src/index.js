@@ -5,7 +5,7 @@ import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 
 import App from './App';
-import {initUser} from './utils/userUtils'
+import { initUser } from './utils/userUtils'
 
 
 initUser()//初始化User信息

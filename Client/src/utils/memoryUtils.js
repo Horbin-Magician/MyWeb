@@ -3,5 +3,5 @@
 */
 var userdata = {}
 
-const exportObject = {userdata}
+const exportObject = { userdata }
 export default exportObject
