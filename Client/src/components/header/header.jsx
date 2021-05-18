@@ -4,25 +4,26 @@ import { HomeOutlined, ToolOutlined, QuestionCircleOutlined, UserOutlined, MenuO
 import { Menu, Row, Col, Button, Modal, Affix } from 'antd';
 
 import LoginModal from '../loginModal/loginModal'
-import { userlogout, checkLogin } from '../../utils/userUtils'
+import { userlogout, checkLogin, addUpdateFun } from '../../utils/userUtils'
 import './header.less'
 /*
 头部组件
  */
 const { SubMenu, Item } = Menu
 class Header extends Component {
-  state = {
-    showLogin: false,
+  constructor(props){
+    super(props)
+    this.state = {
+      showLogin: false,
+    }
+    addUpdateFun(()=>this.forceUpdate())
   }
 
   onUserClick = () => {
     if (checkLogin()) {//退出登录
       Modal.confirm({
         title: '是否确认注销？',
-        onOk: () => {
-          userlogout()//注销
-          this.forceUpdate()
-        },
+        onOk: ()=>userlogout(),//注销
       })
       return
     }
@@ -39,7 +40,7 @@ class Header extends Component {
     const userIcon = checkLogin() ? <MenuOutlined /> : <UserOutlined />
     return (
       <Affix offsetTop={0}>
-        <Row className='header'>
+        <Row className='header' align='middle' justify="center">
           <Col>
             <Menu className='header-menu' mode="horizontal" selectedKeys={[nowKey]}>
               <Item key="home" icon={<HomeOutlined />}>

@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons'
 
 import FavouritesCard from '../favCard/favCard'
 import { reqUpdateItem, reqFavTypeList } from '../../../../../api'
-import { checkLogin } from '../../../../../utils/userUtils'
+import { checkLogin,addUpdateFun } from '../../../../../utils/userUtils'
 
 /*
 左侧导航的组件
@@ -12,11 +12,16 @@ import { checkLogin } from '../../../../../utils/userUtils'
 const { Option } = Select;
 
 export default class CardContent extends Component {
-  state = {
-    showStatus: 0,
+  constructor(props){
+    super(props)
+    this.state = {
+      showStatus: 0,
+    }
+    this.formRef = React.createRef()
+    this.oldUrl = ''
+    addUpdateFun(()=>this.forceUpdate())
   }
-  formRef = React.createRef()
-  oldUrl = ''
+
   //根据itemList获取card节点
   getCardNodes = (itemList) => {
     return itemList.map(item => {
@@ -76,7 +81,7 @@ export default class CardContent extends Component {
           </div>
         </Row>
         <Modal forceRender title='收藏项信息' visible={this.state.showStatus === 1}
-          onOk={() => { this.updateItem() }} onCancel={this.afterAdd}>
+          onOk={() => { this.updateItem() }} onCancel={this.afterUpdate}>
           <Form ref={this.formRef}>
             <Form.Item name="url"
               rules={[{ required: true, message: '请输入URL' },]}>

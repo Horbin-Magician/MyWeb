@@ -49,6 +49,9 @@ class FavouritesDbController():
         query = 'DELETE FROM TYPE WHERE TITLE=(?)'
         data = [title]
         self.c.execute(query, data)
+        query = 'DELETE FROM ITEM WHERE TYPE=(?)'
+        data = [title]
+        self.c.execute(query, data)
         self.conn.commit()
         for type in types:
             if(type[1]>delData[0][1]):

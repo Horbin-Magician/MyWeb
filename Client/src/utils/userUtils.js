@@ -6,6 +6,19 @@ import storageUtils from './storageUtils'
 /**
  * 用户登录
  */
+let updateFuns = []
+
+export const addUpdateFun = (fun) =>{
+  updateFuns.push(fun)
+}
+
+
+const update = ()=>{
+  updateFuns.forEach(e=>{
+    e()
+  })
+}
+
 export const userlogin = (username, password) => {
   return new Promise((resolve) => {
     reqLogin(username, password).then(data => {
@@ -13,6 +26,7 @@ export const userlogin = (username, password) => {
         message.success('登录成功，欢迎回来～')
         memoryUtils.userdata = { username, password }
         storageUtils.saveUser({ username, password })
+        update()//更新
       } else {//账号或密码错误
         message.error('登录失败，账号或密码错误！')
       }
@@ -27,6 +41,7 @@ export const userlogout = () => {
   storageUtils.removeUser()
   memoryUtils.userdata = null
   //TODO 服务器注销
+  update()//更新
   message.success('注销成功')
 }
 /**
