@@ -72,7 +72,7 @@ export default class CardContent extends Component {
     const cardNodes = this.getCardNodes(itemList)
     return (
       <div>
-        <Row gutter={[16, 24]}>
+        <Row gutter={[{ xs: 8, sm: 16, md: 16, lg: 24 },{ xs: 8, sm: 16, md: 16, lg: 24 }]} >
           {cardNodes}
           <div style={checkLogin() ? { display: 'block' } : { display: 'none' }}>
             <Button icon={<PlusOutlined style={{ fontSize: '50px', color: '#C0C0C0' }} />}

@@ -155,7 +155,7 @@ export default class LeftNav extends Component {
     const { menuList, onAddStatus, selectedMenu } = this.state
     const menuNodes = this.getMenuNodes(menuList)
     return (
-      <Sider breakpoint="sm" collapsedWidth="100px"
+      <Sider breakpoint="sm" width='150px' collapsedWidth="0px"
        className="favourites-sider" theme={this.state.theme}>
         <Menu className="favourites-sider-menu" mode="inline"
           selectedKeys={[selectedMenu]}

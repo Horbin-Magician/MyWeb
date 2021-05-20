@@ -9,7 +9,7 @@ import './footer.less'
 export default class Footer extends Component {
   render() {
     return (
-      <Row className='footer' justify="center" gutter={{ xs: 8, sm: 16, md: 12}}>
+      <Row className='footer' justify="center" gutter={{ xs: 8, sm: 16, md: 24}}>
         <Col>
           <img src={beianIcon} alt='' />
           <a target="_blank" rel="noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102004461">
