@@ -1,21 +1,26 @@
 import { Component } from 'react'
-import { Input, Row, Col } from 'antd';
+import { Input, Row, Col } from 'antd'
+import logo from '../../assets/imgs/logo.svg'
 
 /*
 首页的路由组件
 */
-const { Search } = Input;
-
 export default class Home extends Component {
-  onSearch = value => {
-    window.open('https://www.baidu.com/s?&wd='+value)
+  onSearch = e => {
+    window.open('https://www.baidu.com/s?&wd='+e.target.value)
   }
   render() {
     return (
-      <div style={{paddingTop:'300px'}}>
+      <div style={{paddingTop:'200px'}}>
+        <Row justify="center" style={{marginBottom:'10px'}}>
+          <object data={logo} height="100" 
+          type="image/svg+xml" aria-label='logo'
+          codebase="http://www.adobe.com/svg/viewer/install/" />
+        </Row>
         <Row justify="center">
           <Col xs={{ span: 22 }} sm={{ span: 22 }} md={{ span: 12 }} lg={{ span: 8 }}>
-            <Search style={{textAlign:'center'}} placeholder="请填写搜索内容" onSearch={this.onSearch} enterButton />
+            <Input style={{textAlign:'center'}} placeholder="填写内容，回车即可搜索"
+            onPressEnter={this.onSearch} />
           </Col>
         </Row>
       </div>
