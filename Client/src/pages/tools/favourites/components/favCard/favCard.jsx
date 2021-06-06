@@ -52,7 +52,7 @@ export default class FavouritesCard extends Component{
             >
                 <Meta
                 avatar={
-                    <Avatar size={32} shape="square"
+                    <Avatar size={32} shape="square" style={{marginTop:'10px'}}
                     src={url+"favicon.ico"} icon={<FrownOutlined />}/>
                 }
                 title={title}

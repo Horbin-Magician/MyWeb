@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { Input, Row, Col } from 'antd'
 import logo from '../../assets/imgs/logo.svg'
 

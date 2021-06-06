@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/pages/about/about.less"],"names":[],"mappings":"AAAA,eACE,gBAAA,CACA,cACF,CAHA,kBAII,eAAA,CACA,gBAEJ,CAPA,kBAQI,gBAEJ","file":"7.c706319c.chunk.css","sourcesContent":[".about-content{\n  line-height: 40px;\n  font-size: 16px;\n  ul{\n    list-style:disc;\n    margin-left: 50px;\n  }\n  h6{\n    text-align: right;\n  }\n}"]}
