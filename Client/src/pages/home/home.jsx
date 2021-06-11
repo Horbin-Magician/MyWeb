@@ -32,6 +32,7 @@ export default class Home extends Component {
   getSearchResult = async (type=this.state.searchType)=>{
     let searchResult = await reqSearch(type, this.state.searchValue)
     this.setState({searchResult:searchResult,searchResultLoading:false})
+    console.log(searchResult)
   }
 
   onSearchTypeChange = e=>{
