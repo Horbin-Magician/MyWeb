@@ -56,3 +56,7 @@ export const reqDelItem = (url) => ajax('/api/favourites/favitem', {'type':'del'
 export const reqUpdateItem = (url, favType, title, rank, description, oldUrl=undefined) => {
     return ajax('/api/favourites/favitem', {'type':'update', url, favType, title, rank, description, oldUrl}, 'POST')
 }
+//搜索功能
+export const reqSearch = (type, key) => {
+  return ajax('/api/search', {type, key}, 'POST')
+}
