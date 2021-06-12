@@ -12,8 +12,7 @@ headers = {
 def get_data(keyword):
   rooturl = 'http://www.baidu.com/s?ie=utf-8&wd='
   url = rooturl + keyword
-  returnData = crawl_html(url)
-  return(returnData)
+  return crawl_html(url)
 
 def crawl_html(url):
   html = None
@@ -23,7 +22,7 @@ def crawl_html(url):
       print('访问错误：' + str(html.status_code))
   except requests.exceptions.RequestException as e:
     print('baiduSpider:'+'访问url出现异常!')
-    
+  
   return {'status':1, 'errorMessage':html.status_code}
   soup = BeautifulSoup(html.text, 'lxml')
   moreUrl = ''
