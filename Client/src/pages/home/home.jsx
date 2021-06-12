@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Row, Col, Radio } from 'antd'
+import { Input, Row, Col, Radio, message } from 'antd'
 
 import logo from '../../assets/imgs/logo.svg'
 import ResultContent from './components/resultContent'
@@ -31,7 +31,12 @@ export default class Home extends Component {
 
   getSearchResult = async (type=this.state.searchType)=>{
     let searchResult = await reqSearch(type, this.state.searchValue)
-    this.setState({searchResult:searchResult,searchResultLoading:false})
+    if(searchResult['status'] === 0){
+      this.setState({searchResult:searchResult,searchResultLoading:false})
+    }else{
+      message.info(searchResult['errorMessage'])
+      this.setState({searchResultLoading:false, showState:'normal'})
+    }
   }
 
   onSearchTypeChange = e=>{
