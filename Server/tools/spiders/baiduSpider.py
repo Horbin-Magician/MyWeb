@@ -32,9 +32,6 @@ def crawl_html(url):
       print('访问错误：' + str(html.status_code))
   except requests.exceptions.RequestException as e:
     print('baiduSpider:'+'访问url出现异常!')
-  
-  fo = open('debug.log', 'w')
-  fo.write(html.text)
 
   soup = BeautifulSoup(html.text, 'lxml')
   page = soup.select('#page')
