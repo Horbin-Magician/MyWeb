@@ -1,10 +1,13 @@
-from os import error
 import requests
 from bs4 import BeautifulSoup
-# import threading
 
 
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56'
+headers = {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+    'accept-language': 'zh-CN,zh;q=0.9',
+    'cache-control': 'max-age=0',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+}
 datas = []
 moreUrl = ''
 
@@ -22,14 +25,17 @@ def get_data(keyword):
 def crawl_html(url):
   global moreUrl
   moreUrl = ''
-  headers = {'User-Agent': user_agent}
   html = None
   try:
-    html = requests.get(url, headers=headers, timeout=3)
+    html = requests.get(url, headers=headers, timeout=5)
     if(html.status_code != 200):
       print('访问错误：' + str(html.status_code))
   except requests.exceptions.RequestException as e:
     print('baiduSpider:'+'访问url出现异常!')
+  
+  fo = open('debug.log', 'w')
+  fo.write(html.text)
+
   soup = BeautifulSoup(html.text, 'lxml')
   page = soup.select('#page')
   if(len(page) > 0):
