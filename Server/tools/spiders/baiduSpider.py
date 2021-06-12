@@ -25,7 +25,7 @@ def crawl_html(url):
   headers = {'User-Agent': user_agent}
   html = None
   try:
-    html = requests.get(url, headers=headers)
+    html = requests.get(url, headers=headers, timeout=3)
     if(html.status_code != 200):
       print('访问错误：' + str(html.status_code))
   except requests.exceptions.RequestException as e:
