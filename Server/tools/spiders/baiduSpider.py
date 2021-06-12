@@ -38,7 +38,7 @@ def crawl_html(url):
     data = parse_result(result)
     if(data):
       datas.append(data)
-  return {'status':1, 'errorMessage':soup.select('body')[0].text}
+  return {'status':1, 'errorMessage':soup.text}
   return {'status':0, 'data':datas, 'moreUrl':moreUrl}
 
 
