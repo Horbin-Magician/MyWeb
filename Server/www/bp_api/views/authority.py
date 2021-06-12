@@ -1,5 +1,4 @@
-from flask import views
-from flask import request
+from flask import views,request
 import json
 
 from tools.dbControllers.BaseDbController import BaseDbController
