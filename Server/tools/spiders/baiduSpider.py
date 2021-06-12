@@ -23,7 +23,8 @@ def crawl_html(url):
       print('访问错误：' + str(html.status_code))
   except requests.exceptions.RequestException as e:
     print('baiduSpider:'+'访问url出现异常!')
-
+    
+  return {'status':1, 'errorMessage':html.status_code}
   soup = BeautifulSoup(html.text, 'lxml')
   moreUrl = ''
   datas = []
@@ -38,7 +39,6 @@ def crawl_html(url):
     data = parse_result(result)
     if(data):
       datas.append(data)
-  return {'status':1, 'errorMessage':soup.text}
   return {'status':0, 'data':datas, 'moreUrl':moreUrl}
 
 
