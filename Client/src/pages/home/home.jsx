@@ -31,7 +31,7 @@ export default class Home extends Component {
 
   getSearchResult = async (type=this.state.searchType)=>{
     let searchResult = await reqSearch(type, this.state.searchValue)
-    if(searchResult['status'] === '0'){
+    if(searchResult['status'] === 0){
       this.setState({searchResult:searchResult,searchResultLoading:false})
     }else{
       message.info(searchResult['errorMessage'])

@@ -3,10 +3,11 @@ from bs4 import BeautifulSoup
 
 
 headers = {
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'cache-control': 'max-age=0',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36",
+  "Referer": "https://www.baidu.com",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
 }
 
 def get_data(keyword):
@@ -19,12 +20,11 @@ def crawl_html(url):
   try:
     html = requests.get(url, headers=headers, timeout=5)
     if(html.status_code != 200):
-      print('访问错误：' + str(html.status_code))
+      return {'status':1, 'errorMessage':'出现异常！'}
   except requests.exceptions.RequestException as e:
-    print('baiduSpider:'+'访问url出现异常!')
+    return {'status':1, 'errorMessage':'出现异常！'}
   
   soup = BeautifulSoup(html.text, 'lxml')
-  return {'status':1, 'errorMessage':soup.select('body')[0].text}
   moreUrl = ''
   datas = []
 
