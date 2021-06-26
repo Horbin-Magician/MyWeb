@@ -20,7 +20,6 @@ export default class Home extends Component {
   searchTypeOptions = [
     { label: '网页', value: 'web' },
     { label: '文件', value: 'file' },
-    { label: '问题', value: 'question', disabled: true },
   ];
 
   onSearch = () => {
