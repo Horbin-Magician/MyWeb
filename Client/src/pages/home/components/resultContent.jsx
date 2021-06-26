@@ -15,7 +15,8 @@ export default class ResultContent extends Component {
       return (
         <Row key={item.href} justify='center' style={{marginBottom:'10px'}}>
           <Col xs={{ span: 22 }} sm={{ span: 22 }} md={{ span: 12 }} lg={{ span: 12 }}>
-            <Card title={item.title} hoverable={true} onClick={this.onClickFun(item.href)}>
+            <Card title={item.title} hoverable={true} onClick={this.onClickFun(item.href)}
+            headStyle={{color:'rgb(24, 144, 255)', minHeight:'30px', lineHeight:'30px'}}>
               {item.contain}
             </Card>
           </Col>
