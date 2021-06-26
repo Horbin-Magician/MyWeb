@@ -3,7 +3,10 @@ import sqlite3
 
 class BaseDbController():
   def __init__(self):
-    self.conn = sqlite3.connect('datas/base.db')
+    try:
+      self.conn = sqlite3.connect('datas/base.db')
+    except:
+      self.conn = sqlite3.connect('Server/datas/base.db')
     self.c = self.conn.cursor()
 
   def __del__(self):

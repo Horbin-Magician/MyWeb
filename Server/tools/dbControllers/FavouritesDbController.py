@@ -3,7 +3,10 @@ import sqlite3
 
 class FavouritesDbController():
   def __init__(self):
-    self.conn = sqlite3.connect('Server/datas/favourites.db')
+    try:
+      self.conn = sqlite3.connect('datas/favourites.db')
+    except:
+      self.conn = sqlite3.connect('Server/datas/favourites.db')
     self.c = self.conn.cursor()
 
   def __del__(self):
