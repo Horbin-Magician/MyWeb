@@ -13,7 +13,7 @@ headers = {
 }
 
 def get_data(keyword):
-  rooturl = 'http://www.baidu.com/s?ie=utf-8&wd='
+  rooturl = 'https://www.baidu.com/s?ie=utf-8&wd='
   url = rooturl + keyword
   return crawl_html(url)
 
