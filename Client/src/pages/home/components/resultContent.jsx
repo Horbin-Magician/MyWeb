@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Row, Col, Button, Spin } from 'antd';
+import { Card, Row, Col, Button, Spin, message } from 'antd';
 /*
 左侧导航的组件
  */
@@ -7,6 +7,17 @@ export default class ResultContent extends Component {
   onClickFun = (href)=>{
     if(this.props.searchType === 'web'){
       return(()=>{window.open(href)})
+    }
+    if(this.props.searchType === 'file'){
+      return(()=>{
+        var ele = document.createElement("input"); //创建一个input标签
+        ele.setAttribute("value", href); // 设置改input的value值
+        document.body.appendChild(ele); // 将input添加到body
+        ele.select();  // 获取input的文本内容
+        document.execCommand("copy"); // 执行copy指令
+        document.body.removeChild(ele); // 删除input标签
+        message.info('已将磁力链接复制到剪切板！')
+      })
     }
   }
 

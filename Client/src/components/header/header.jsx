@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { HomeOutlined, ToolOutlined, QuestionCircleOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons'
-import { Menu, Row, Col, Button, Modal, Affix } from 'antd';
+import { Menu, Row, Col, Button, Modal, Affix, Dropdown } from 'antd';
 
 import LoginModal from '../loginModal/loginModal'
 import { userlogout, checkLogin, addUpdateFun } from '../../utils/userUtils'
@@ -19,25 +19,43 @@ class Header extends Component {
     addUpdateFun(()=>this.forceUpdate())
   }
 
-  onUserClick = () => {
-    if (checkLogin()) {//退出登录
+  onMenuClick = ({key}) => {
+    console.log(key)
+    if(key === 'logout'){
       Modal.confirm({
         title: '是否确认注销？',
         onOk: ()=>userlogout(),//注销
       })
-      return
     }
-    this.switchLoginShow()
   }
 
   switchLoginShow = () => this.setState({ showLogin: !this.state.showLogin, })
 
   render() {
+    const menu = (
+      <Menu onClick={this.onMenuClick}>
+        <Menu.Item key="manage">
+          管理
+        </Menu.Item>
+        <Menu.Item key="logout">
+          注销
+        </Menu.Item>
+      </Menu>
+    )
     //根据url获取nowKey
     const url = this.props.history.location.pathname.split('/')
     const nowKey = url[url.length - 1] === '' ? 'home' : url[url.length - 1]
     //判断是否已经登录
-    const userIcon = checkLogin() ? <MenuOutlined /> : <UserOutlined />
+    let userBtn = null
+    if(checkLogin()){
+      userBtn = (
+        <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter" arrow>
+          <Button type="primary" shape='circle'><MenuOutlined /></Button>
+        </Dropdown>
+      )
+    }else{
+      userBtn = <Button type="primary" shape='circle' onClick={this.switchLoginShow}><UserOutlined /></Button>
+    }
     return (
       <Affix offsetTop={0}>
         <Row className='header' align='middle' justify="center">
@@ -57,9 +75,7 @@ class Header extends Component {
             </Menu>
           </Col>
           <Col>
-            <Button type="primary" shape='circle' onClick={this.onUserClick}>
-              {userIcon}
-            </Button>
+            {userBtn}
           </Col>
           <LoginModal switchShow={this.switchLoginShow} showLogin={this.state.showLogin} />
         </Row>
