@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Row, Col, Button, Spin } from 'antd';
+import { Card, Row, Col, Button, Spin, Tag } from 'antd';
 /*
 左侧导航的组件
  */
@@ -8,13 +8,28 @@ export default class ResultContent extends Component {
     return(()=>{window.open(href)})
   }
 
+  tags = [{tag:'知乎', reg:/- 知乎$/},{tag:'官方', reg:/官方$/}]
+
   getCardNodes = (resultList)=>{
     return resultList.map(item => {
+      let itemTitle = item.title
+      let itemTags = null
+
+      itemTags = this.tags.map(item => {
+        const result = itemTitle.match(item.reg)
+        if(result){
+          itemTitle = itemTitle.replace(item.reg, ' ')
+          return <Tag color="blue">{item.tag}</Tag>
+        }
+        return null
+      })
+      itemTitle = <span>{itemTitle}{itemTags}</span>
+
       return (
         <Row key={item.href} justify='center' style={{marginBottom:'10px'}}>
           <Col xs={{ span: 22 }} sm={{ span: 22 }} md={{ span: 12 }} lg={{ span: 12 }}>
-            <Card title={item.title} hoverable={true} onClick={this.onClickFun(item.href)}
-            headStyle={{color:'rgb(24, 144, 255)', minHeight:'30px', lineHeight:'30px'}}>
+            <Card title={itemTitle} hoverable={true}
+            onClick={this.onClickFun(item.href)} headStyle={{color:'rgb(24, 144, 255)'}}>
               {item.contain}
             </Card>
           </Col>
