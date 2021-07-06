@@ -7,8 +7,10 @@ headers = {
   "Referer": "https://btsow.shop/",
 }
 
+url_root = 'https://btsow.shop/'
+
 def get_data(keyword):
-  rooturl = 'https://btsow.shop/search/'
+  rooturl = url_root + 'search/'
   url = rooturl + keyword
   return crawl_html(url)
 
@@ -43,7 +45,7 @@ def parse_result(result):
   data = {}
   try:
     data['title'] = result.select('div.file')[0].text
-    data['href'] = result.select('a')[0]['href'][len('https://btsow.cam/magnet/detail/hash/'):]
+    data['href'] = 'magnet:?xt=urn:btih:' + result.select('a')[0]['href'][len(url_root + 'magnet/detail/hash/')-6:]
     data['contain'] = '大小：' + result.select('div.size')[0].text + ' 日期：' + result.select('div.date')[0].text
     return data
   except:
