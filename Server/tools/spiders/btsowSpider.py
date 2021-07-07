@@ -28,7 +28,6 @@ def crawl_html(url):
   datas = []
 
   page = soup.select('.pagination')
-  print(page)
   if(len(page) > 0):
     moreUrl = url + '/page/2'
   

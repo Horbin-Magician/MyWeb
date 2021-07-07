@@ -4,9 +4,7 @@ import { Card, Row, Col, Button, Spin, Tag } from 'antd';
 左侧导航的组件
  */
 export default class ResultContent extends Component {
-  onClickFun = (href)=>{
-    return(()=>{window.open(href)})
-  }
+  onClickFun = href=>()=>{window.open(href)}
 
   tags = [{tag:'知乎', reg:/- 知乎$/},{tag:'官方', reg:/官方$/}]
 
