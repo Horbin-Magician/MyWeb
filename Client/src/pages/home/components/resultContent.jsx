@@ -21,7 +21,7 @@ export default class ResultContent extends Component {
         }
         return null
       })
-      itemTitle = <span>{itemTitle}{itemTags}</span>
+      itemTitle = <span>{itemTags}{itemTitle}</span>
 
       return (
         <Row key={item.href} justify='center' style={{marginBottom:'10px'}}>
