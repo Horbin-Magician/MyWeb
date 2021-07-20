@@ -53,8 +53,8 @@ export const reqFavItemList = (favType=undefined) => ajax('/api/favourites/favit
 //删除收藏项
 export const reqDelItem = (url) => ajax('/api/favourites/favitem', {'type':'del', url}, 'POST')
 //更新收藏项
-export const reqUpdateItem = (url, favType, title, rank, description, oldUrl=undefined) => {
-    return ajax('/api/favourites/favitem', {'type':'update', url, favType, title, rank, description, oldUrl}, 'POST')
+export const reqUpdateItem = (url, favType, title, rank, iconUrl, description, oldUrl=undefined) => {
+    return ajax('/api/favourites/favitem', {'type':'update', url, favType, title, rank, iconUrl, description, oldUrl}, 'POST')
 }
 //搜索功能
 export const reqSearch = (type, key) => {

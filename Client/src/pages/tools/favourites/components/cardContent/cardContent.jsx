@@ -28,7 +28,7 @@ export default class CardContent extends Component {
       return (
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}
          key={item.url}>
-          <FavouritesCard url={item.url} title={item.title}
+          <FavouritesCard url={item.url} title={item.title} iconUrl={item.iconUrl}
             description={item.description} type={item.type} rank={item.rank}
             update={this.props.update} onEdit={this.onEdit} />
         </Col>
@@ -38,12 +38,12 @@ export default class CardContent extends Component {
   //更新item
   updateItem = () => {
     this.formRef.current.validateFields().then(values => {
-      const { url, title, description, type, rank } = values
-      reqUpdateItem(url, type, title, rank, description, this.oldUrl).then(data => {
+      const { url, title, description, type, rank, iconUrl } = values
+      reqUpdateItem(url, type, title, rank, iconUrl, description, this.oldUrl).then(data => {
         if (data.status === '0') {
           this.props.update()
           this.afterUpdate()
-          message.success('添加成功！')
+          message.success('更新成功！')
         }
       })
     }).catch(info => message.error('请正确填写信息！'));
@@ -55,7 +55,7 @@ export default class CardContent extends Component {
     this.oldUrl = ''
   }
   //开始编辑item
-  onEdit = (url, title, description, type, rank) => {
+  onEdit = (url, title, description, type, rank, iconUrl) => {
     this.oldUrl = url
     reqFavTypeList().then(data => {
       //获取并设置typeOptions
@@ -63,7 +63,7 @@ export default class CardContent extends Component {
         return <Option key={item.title} value={item.title}>{item.title}</Option>
       })
       //初始化其他信息
-      this.formRef.current.setFieldsValue({ url, title, description, type, rank })
+      this.formRef.current.setFieldsValue({ url, title, description, type, rank, iconUrl })
       this.setState({ typeOptions: typeOptions, showStatus: 1 })
     })
   }
@@ -95,6 +95,9 @@ export default class CardContent extends Component {
             <Form.Item name="description"
               rules={[{ required: true, message: '请输入相关描述' },]}>
               <Input placeholder="请输入相关描述" />
+            </Form.Item>
+            <Form.Item name="iconUrl">
+              <Input placeholder="请输入IconURL，可为空" />
             </Form.Item>
             <Form.Item name="type">
               <Select>{this.state.typeOptions}</Select>

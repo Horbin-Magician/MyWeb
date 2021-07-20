@@ -21,6 +21,7 @@ class FavouritesDbController():
     TYPE     TEXT                NOT NULL,
     TITLE    TEXT                NOT NULL,
     RANK     INT                 NOT NULL,
+    ICONURL  TEXT,
     DESCRIPTION TEXT);''')
 
   def updateType(self, title, rank, oldTitle=None):
@@ -118,7 +119,7 @@ class FavouritesDbController():
       datas.append(cow)
     return datas
 
-  def updateItem(self, url, type=None, title=None, rank=None, description=None, oldUrl=None):
+  def updateItem(self, url, type=None, title=None, rank=None, iconUrl=None, description=None, oldUrl=None):
     query, data = '', []
     if(oldUrl):
       if(type):
@@ -133,6 +134,10 @@ class FavouritesDbController():
         query = '''UPDATE ITEM SET RANK=(?) WHERE URL=(?)'''
         data = [rank, oldUrl]
         self.c.execute(query, data)
+      if(iconUrl):
+        query = '''UPDATE ITEM SET ICONURL=(?) WHERE URL=(?)'''
+        data = [iconUrl, oldUrl]
+        self.c.execute(query, data)
       if(description):
         query = '''UPDATE ITEM SET DESCRIPTION=(?) WHERE URL=(?)'''
         data = [description, oldUrl]
@@ -144,8 +149,8 @@ class FavouritesDbController():
     else:
       datas = self.getItemData(url)
       if(len(datas) == 0):
-        query = '''INSERT INTO ITEM (URL,TYPE,TITLE,RANK,DESCRIPTION) VALUES (?,?,?,?,?)'''
-        data = [url, type, title, rank, description]
+        query = '''INSERT INTO ITEM (URL,TYPE,TITLE,RANK,ICONURL,DESCRIPTION) VALUES (?,?,?,?,?,?)'''
+        data = [url, type, title, rank, iconUrl, description]
         self.c.execute(query, data)
       else:
         if(type):
@@ -159,6 +164,10 @@ class FavouritesDbController():
         if(rank):
           query = '''UPDATE ITEM SET RANK=(?) WHERE URL=(?)'''
           data = [rank, url]
+          self.c.execute(query, data)
+        if(iconUrl):
+          query = '''UPDATE ITEM SET ICONURL=(?) WHERE URL=(?)'''
+          data = [iconUrl, url]
           self.c.execute(query, data)
         if(description):
           query = '''UPDATE ITEM SET DESCRIPTION=(?) WHERE URL=(?)'''

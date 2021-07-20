@@ -14,8 +14,8 @@ const {confirm} = Modal
 export default class FavouritesCard extends Component{
     //编辑点击事件
     onEdit = ()=>{
-        const {url, title, description, type, rank} = this.props
-        this.props.onEdit(url, title, description, type, rank)
+        const {url, title, description, type, rank, iconUrl} = this.props
+        this.props.onEdit(url, title, description, type, rank, iconUrl)
     }
     //删除点击事件
     onDel = ()=>{
@@ -38,7 +38,7 @@ export default class FavouritesCard extends Component{
     }
 
     render(){
-        const {url, title, description, rank} = this.props
+        const {url, title, iconUrl, description, rank} = this.props
         return(
             <Card style={{maxWidth:'550px', minWidth:'200px'}}
             headStyle={{minHeight:"36px"}} 
@@ -53,7 +53,7 @@ export default class FavouritesCard extends Component{
                 <Meta
                 avatar={
                     <Avatar size={32} shape="square" style={{marginTop:'10px'}}
-                    src={url+"favicon.ico"} icon={<FrownOutlined />}/>
+                    src={iconUrl?iconUrl:url+"favicon.ico"} icon={<FrownOutlined />}/>
                 }
                 title={title}
                 description={description}
