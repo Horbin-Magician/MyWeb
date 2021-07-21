@@ -24,8 +24,9 @@ export const userlogin = (username, password) => {
     reqLogin(username, password).then(data => {
       if (data && data.status === '0') {//登入成功
         message.success('登录成功，欢迎回来～')
-        memoryUtils.userdata = { username, password }
-        storageUtils.saveUser({ username, password })
+        const authority = data.authority
+        memoryUtils.userdata = { username, password, authority}
+        storageUtils.saveUser({ username, password, authority })
         update()//更新
       } else {//账号或密码错误
         message.error('登录失败，账号或密码错误！')

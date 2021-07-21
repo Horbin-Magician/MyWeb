@@ -5,6 +5,7 @@ import Header from './components/header/header'
 import Footer from './components/footer/footer'
 import Loading from './components/loading/loading'
 
+const Admin = lazy(() => import('./pages/admin/admin'))
 const Home = lazy(() => import('./pages/home/home'))
 const Tools = lazy(() => import('./pages/tools/tools'))
 const About = lazy(() => import('./pages/about/about'))
@@ -20,6 +21,7 @@ export default class App extends Component {
             <Switch>
               <Route path='/tools' component={Tools}></Route>
               <Route path='/about' component={About}></Route>
+              <Route path='/admin' component={Admin}></Route>
               <Route path='/' exact component={Home}></Route>
               <Route path='/' component={Error}></Route>
             </Switch>

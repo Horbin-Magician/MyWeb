@@ -19,17 +19,17 @@ export const reqUpdateUser = (username, password, authority) => {
 }
 //删除用户
 export const reqDelUser = (username) => {
-    ajax('/api/user', {'type':'del', username}, 'POST')
+    return ajax('/api/user', {'type':'del', username}, 'POST')
 }
 //获取角色列表
 export const reqAuthorityList = () => ajax('/api/authority', {'type':'get'}, 'POST')
 //更新角色
 export const reqUpdateAuthority = (name, menus='') => {
-    ajax('/api/authority', {'type':'update', name, menus}, 'POST')
+    return ajax('/api/authority', {'type':'update', name, menus}, 'POST')
 }
 //删除角色
 export const reqDelAuthority = (name) => {
-    ajax('/api/authority', {'type':'del', name}, 'POST')
+    return ajax('/api/authority', {'type':'del', name}, 'POST')
 }
 
 //获取收藏类

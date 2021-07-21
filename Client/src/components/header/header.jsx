@@ -20,12 +20,13 @@ class Header extends Component {
   }
 
   onMenuClick = ({key}) => {
-    console.log(key)
     if(key === 'logout'){
       Modal.confirm({
         title: '是否确认注销？',
         onOk: ()=>userlogout(),//注销
       })
+    }else if(key === 'manage'){
+      this.props.history.push('/admin')
     }
   }
 
@@ -34,16 +35,13 @@ class Header extends Component {
   render() {
     const menu = (
       <Menu onClick={this.onMenuClick}>
-        <Menu.Item key="manage">
-          管理
-        </Menu.Item>
-        <Menu.Item key="logout">
-          注销
-        </Menu.Item>
+        <Menu.Item key="manage">管理</Menu.Item>
+        <Menu.Item key="logout">注销</Menu.Item>
       </Menu>
     )
     //根据url获取nowKey
     const url = this.props.history.location.pathname.split('/')
+    if(url[1] === 'admin')return null;//若为管理界面，隐藏header
     const nowKey = url[url.length - 1] === '' ? 'home' : url[url.length - 1]
     //判断是否已经登录
     let userBtn = null

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Row, Col} from 'antd';
 
 import beianIcon from '../../assets/imgs/beianIcon.png';
@@ -6,8 +7,12 @@ import './footer.less'
 /*
 首页的路由组件
 */
-export default class Footer extends Component {
+class Footer extends Component {
   render() {
+    //若为管理界面，隐藏header
+    const url = this.props.history.location.pathname.split('/')
+    if(url[1] === 'admin')return null;
+    
     return (
       <Row className='footer' justify="center" gutter={{ xs: 8, sm: 16, md: 24}}>
         <Col>
@@ -25,3 +30,4 @@ export default class Footer extends Component {
     );
   }
 }
+export default withRouter(Footer)

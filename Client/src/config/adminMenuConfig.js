@@ -1,6 +1,5 @@
 import {
     HomeOutlined,
-    PieChartOutlined,
     FormOutlined,
     UserOutlined,
     SettingOutlined,
@@ -12,11 +11,6 @@ const adminMenuList = [
         key:'home',
         title:'首页',
         icon:HomeOutlined,
-    },
-    {
-        key:'statistics',
-        title:'统计',
-        icon:PieChartOutlined,
     },
     {
         key:'manages',
