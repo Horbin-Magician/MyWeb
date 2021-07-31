@@ -12,5 +12,6 @@ module.exports = override(
     javascriptEnabled: true,
   }),
   addWebpackModuleRule({test: /\.md$/, use: 'raw-loader'}),
-  addWebpackModuleRule({test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/, use: 'file-loader?name=assets/[name].[ext]'})
+  // addWebpackModuleRule({test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/, use: 'file-loader?name=assets/[name].[ext]'})
+  // addWebpackModuleRule({test: /\.svg$/, use: 'file-loader?name=assets/[name].[ext]'})
 );
