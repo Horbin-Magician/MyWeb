@@ -24,7 +24,6 @@ export default class Home extends Component {
 
   onSearch = () => {
     if (this.state.showState === 'normal') this.setState({ showState: 'search' })
-    // this.setState({ searchResultLoading: true })
     this.getSearchResult()
   }
 
@@ -61,9 +60,7 @@ export default class Home extends Component {
         {/* LOGO */}
         <Row justify="center" style={{ marginBottom: '10px' }}>
           <Col span={logoSpan}>
-            <object data={logo} height="100"
-              type="image/svg+xml" aria-label='logo'
-              codebase="http://www.adobe.com/svg/viewer/install/" />
+            <img src={logo} height="100" alt="logo"></img>
           </Col>
         </Row>
         {/* 搜索框 */}
