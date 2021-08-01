@@ -1,4 +1,4 @@
-from flask import views,request
+from flask import views,request,session
 import json
 
 from tools.dbControllers.BaseDbController import BaseDbController
@@ -10,10 +10,9 @@ class AuthorityView(views.View):
 
   def dispatch_request(self):
     return_dict = {'status':'1'}
-    #TODO 权限审核
-    type = request.json.get('type')
-    db = BaseDbController()
-    try:
+    if(session.get('user_info')):         # 判断是否登入
+      type = request.json.get('type')
+      db = BaseDbController()
       if(type == 'update'):
         name = request.json.get('name')
         menus = request.json.get('menus')
@@ -33,8 +32,5 @@ class AuthorityView(views.View):
         name = request.json.get('name')
         db.delAuthority(name)
         return_dict['status'] = '0'
-    except:
-      #TODO 异常处理
-      pass
 
     return json.dumps(return_dict)

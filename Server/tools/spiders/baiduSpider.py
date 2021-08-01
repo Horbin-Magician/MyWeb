@@ -32,8 +32,8 @@ def crawl_html(url):
     soup = BeautifulSoup(html.text, 'lxml')
 
     timeout = soup.select('.timeout')
-    print(len(timeout))
     if(len(timeout) == 0):
+      print(html.text)
       ifGetHtml = True
 
   moreUrl = ''
@@ -61,7 +61,6 @@ def parse_result(result):
     data['contain'] = result.select('div.c-abstract')[0].text
     return data
   except:
-    # TODO
     pass
 
 if __name__ == '__main__':

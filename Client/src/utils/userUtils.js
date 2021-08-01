@@ -6,19 +6,23 @@ import storageUtils from './storageUtils'
 /**
  * 用户登录
  */
-let updateFuns = []
-
+let updateFuns = [] //用户状态更新回调函数
+//添加回调
 export const addUpdateFun = (fun) =>{
   updateFuns.push(fun)
 }
-
-
+//更新时调用回调
 const update = ()=>{
   updateFuns.forEach(e=>{
     e()
   })
 }
-
+/**
+ * 
+ * @param {*用户名} username 
+ * @param {*密码} password 
+ * @returns 结果promise
+ */
 export const userlogin = (username, password) => {
   return new Promise((resolve) => {
     reqLogin(username, password).then(data => {
@@ -41,7 +45,6 @@ export const userlogin = (username, password) => {
 export const userlogout = () => {
   storageUtils.removeUser()
   memoryUtils.userdata = null
-  //TODO 服务器注销
   update()//更新
   message.success('注销成功')
 }
@@ -50,8 +53,10 @@ export const userlogout = () => {
  */
 export const initUser = () => {
   const user = storageUtils.getUser()
-  if (user.username) memoryUtils.userdata = user
-  //TODO 建立session
+  if (user.username){
+    memoryUtils.userdata = user
+    userlogin(user.username, user.password)
+  }
 }
 /**
  * 检查是否的登录
@@ -59,7 +64,6 @@ export const initUser = () => {
  */
 export const checkLogin = () => {
   if (memoryUtils.userdata && memoryUtils.userdata.username) {
-    //TODO 服务器检查
     return true
   }
   return false

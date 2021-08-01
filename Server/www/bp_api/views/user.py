@@ -1,5 +1,4 @@
-from flask import views
-from flask import request
+from flask import views,request,session
 import json
 
 from tools.dbControllers.BaseDbController import BaseDbController
@@ -11,10 +10,9 @@ class UserView(views.View):
 
   def dispatch_request(self):
     return_dict = {'status':'1'}
-    #TODO 权限审核
-    type = request.json.get('type')
-    db = BaseDbController()
-    try:
+    if(session.get('user_info')):
+      type = request.json.get('type')
+      db = BaseDbController()
       if(type == 'update'):
         username = request.json.get('username')
         password = request.json.get('password')
@@ -36,8 +34,4 @@ class UserView(views.View):
         username = request.json.get('username')
         db.delUser(username)
         return_dict['status'] = '0'
-    except:
-      #TODO 异常处理
-      pass
-
     return json.dumps(return_dict)

@@ -57,7 +57,7 @@ export default class LeftNav extends Component{
         return(
             <Sider className='left-nav'>
                 <Link to='/' className='left-nav-header'>
-                    <h1>后台管理</h1>
+                    <h1>云边小铺</h1>
                 </Link>
                 <Menu selectedKeys={[this.props.path.split('/')[2]]} defaultOpenKeys={[this.openKey]} mode="inline" theme="dark">
                     {this.state.menuNodes}

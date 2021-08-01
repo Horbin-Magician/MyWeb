@@ -48,7 +48,6 @@ def parse_result(result):
     data['contain'] = '大小：' + result.select('div.size')[0].text + ' 日期：' + result.select('div.date')[0].text
     return data
   except:
-    # TODO
     pass
 
 if __name__ == '__main__':
