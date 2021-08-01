@@ -3,7 +3,7 @@ from flask import Blueprint
 from flask import url_for
 
 
-web = Blueprint('web', __name__, template_folder='templates', static_folder="static", static_url_path="/bp_web/static")
+web = Blueprint('web', __name__, template_folder='templates', static_folder="static")
 
 @web.route('/', defaults={'path': ''})
 @web.route('/<path:path>')
