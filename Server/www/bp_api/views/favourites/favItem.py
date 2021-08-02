@@ -12,7 +12,7 @@ class FavItemView(views.View):
         return_dict = {'status': '1'}
         type = request.json.get('type')
         db = FavouritesDbController()
-        if(type == 'get'):
+        if(type == 'get'):                # 获取
             favType = request.json.get('favType')
             datas = db.getItemDataFromType(favType)
             return_datas = []
@@ -27,8 +27,8 @@ class FavItemView(views.View):
                 return_datas.append(return_data)
             return_dict['status'] = '0'
             return_dict['data'] = return_datas
-        if(session.get('user_info')):
-            if(type == 'update'):
+        if(session.get('user_info')):# 权限判断
+            if(type == 'update'):         # 更新
                 url = request.json.get('url')
                 favType = request.json.get('favType')
                 title = request.json.get('title')
@@ -43,7 +43,7 @@ class FavItemView(views.View):
                     db.updateItem(url, favType, title, rank,
                                   iconUrl, description)
                 return_dict['status'] = '0'
-            if(type == 'del'):
+            if(type == 'del'):            # 删除
                 url = request.json.get('url')
                 db.delItem(url)
                 return_dict['status'] = '0'

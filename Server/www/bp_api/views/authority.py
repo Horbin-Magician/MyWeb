@@ -10,15 +10,15 @@ class AuthorityView(views.View):
 
   def dispatch_request(self):
     return_dict = {'status':'1'}
-    if(session.get('user_info')):         # 判断是否登入
+    if(session.get('user_info')):       # 权限判断
       type = request.json.get('type')
       db = BaseDbController()
-      if(type == 'update'):
+      if(type == 'update'):             # 更新数据
         name = request.json.get('name')
         menus = request.json.get('menus')
         db.updateAuthority(name, menus)
         return_dict['status'] = '0'
-      elif(type == 'get'):
+      elif(type == 'get'):              # 获取数据
         datas = db.getData('AUTHORITY')
         return_datas = []
         for data in datas:
@@ -28,7 +28,7 @@ class AuthorityView(views.View):
           return_datas.append(return_data)
         return_dict['status'] = '0'
         return_dict['data'] = return_datas
-      elif(type == 'del'):
+      elif(type == 'del'):              # 删除数据
         name = request.json.get('name')
         db.delAuthority(name)
         return_dict['status'] = '0'

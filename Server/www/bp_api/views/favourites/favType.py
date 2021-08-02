@@ -13,7 +13,7 @@ class FavTypeView(views.View):
     type = request.json.get('type')
 
     db = FavouritesDbController()
-    if(type == 'get'):
+    if(type == 'get'):                      # 获取type数据
         datas = db.getTypeData()
         return_datas = []
         for data in datas:
@@ -23,8 +23,8 @@ class FavTypeView(views.View):
           return_datas.append(return_data)
         return_dict['status'] = '0'
         return_dict['data'] = return_datas
-    if(session.get('user_info')):
-        if(type == 'update'):
+    if(session.get('user_info')):       # 权限判断
+        if(type == 'update'):               # 更新type数据
             title = request.json.get('title')
             rank = request.json.get('rank')
             oldTitle = request.json.get('oldTitle')
@@ -33,11 +33,11 @@ class FavTypeView(views.View):
             else:
                 db.updateType(title, rank)
             return_dict['status'] = '0'
-        if(type == 'del'):
+        if(type == 'del'):                  # 删除type数据
             title = request.json.get('title')
             db.delType(title)
             return_dict['status'] = '0'
-        if(type == 'move'):
+        if(type == 'move'):                 # 移动type
             fType = request.json.get('fType')
             tType = request.json.get('tType')
             db.moveTypeData(fType, tType)
