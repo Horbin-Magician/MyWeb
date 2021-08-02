@@ -19,7 +19,7 @@ class Header extends Component {
     addUpdateFun(()=>this.forceUpdate())
   }
 
-  onMenuClick = ({key}) => {
+  onUserMenuClick = ({key}) => {
     if(key === 'logout'){
       Modal.confirm({
         title: '是否确认注销？',
@@ -33,8 +33,8 @@ class Header extends Component {
   switchLoginShow = () => this.setState({ showLogin: !this.state.showLogin, })
 
   render() {
-    const menu = (
-      <Menu onClick={this.onMenuClick}>
+    const userMenu = (
+      <Menu onClick={this.onUserMenuClick}>
         <Menu.Item key="manage">管理</Menu.Item>
         <Menu.Item key="logout">注销</Menu.Item>
       </Menu>
@@ -47,7 +47,7 @@ class Header extends Component {
     let userBtn = null
     if(checkLogin()){
       userBtn = (
-        <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter" arrow>
+        <Dropdown overlay={userMenu} trigger={['click']} placement="bottomCenter" arrow>
           <Button type="primary" shape='circle'><MenuOutlined /></Button>
         </Dropdown>
       )
@@ -60,15 +60,18 @@ class Header extends Component {
           <Col>
             <Menu className='header-menu' mode="horizontal" selectedKeys={[nowKey]}>
               <Item key="home" icon={<HomeOutlined />}>
-                <Link to={'/'}>首页</Link>
+                <Link to={'/'}>源初</Link>
               </Item>
-              <SubMenu key="tools" title="小工具" icon={<ToolOutlined />}>
+              <Item key="passages" icon={<HomeOutlined />}>
+                <Link to={'/'}>夕拾</Link>
+              </Item>
+              <SubMenu key="tools" title="利器" icon={<ToolOutlined />}>
                 <Item key="favorites">
                   <Link to={'/tools/favorites'}>收藏夹</Link>
                 </Item>
               </SubMenu>
               <Item key="about" icon={<QuestionCircleOutlined />}>
-                <Link to={'/about'}>关于</Link>
+                <Link to={'/about'}>始末</Link>
               </Item>
             </Menu>
           </Col>

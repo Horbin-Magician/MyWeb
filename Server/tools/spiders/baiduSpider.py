@@ -6,17 +6,19 @@ from bs4 import BeautifulSoup
 headers = {
   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
   "Referer": "https://www.baidu.com",
-  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-  "Accept-Encoding": "gzip, deflate, br",
   "Host" : "www.baidu.com",
-  "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+  # "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+  # "Accept-Encoding": "gzip, deflate, br",
+  # "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
 }
 
+# 获取数据
 def get_data(keyword):
   rooturl = 'https://www.baidu.com/s?ie=utf-8&wd='
   url = rooturl + keyword
   return crawl_html(url)
 
+# 爬取网页
 def crawl_html(url):
   html = None
   ifGetHtml = False
@@ -51,7 +53,7 @@ def crawl_html(url):
       datas.append(data)
   return {'status':0, 'data':datas, 'moreUrl':moreUrl}
 
-
+# 根据request结果解析数据
 def parse_result(result):
   data = {}
   try:
