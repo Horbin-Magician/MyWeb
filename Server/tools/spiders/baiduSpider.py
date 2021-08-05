@@ -35,7 +35,6 @@ def crawl_html(url):
 
     timeout = soup.select('.timeout')
     if(len(timeout) == 0):
-      print(html.text)
       ifGetHtml = True
 
   moreUrl = ''

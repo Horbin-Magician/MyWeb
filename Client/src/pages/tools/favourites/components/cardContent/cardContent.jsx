@@ -26,8 +26,7 @@ export default class CardContent extends Component {
   getCardNodes = (itemList) => {
     return itemList.map(item => {
       return (
-        <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}
-         key={item.url}>
+        <Col xs={24} sm={24} md={12} lg={6} key={item.url}>
           <FavouritesCard url={item.url} title={item.title} iconUrl={item.iconUrl}
             description={item.description} type={item.type} rank={item.rank}
             update={this.props.update} onEdit={this.onEdit} />

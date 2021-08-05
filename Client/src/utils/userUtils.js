@@ -33,7 +33,15 @@ export const userlogin = (username, password) => {
         storageUtils.saveUser({ username, password, authority })
         update()//更新
       } else {//账号或密码错误
-        message.error('登录失败，账号或密码错误！')
+        const user = storageUtils.getUser()
+        if (user.username){
+          storageUtils.removeUser()
+          memoryUtils.userdata = null
+          console.log('update')
+          update()//更新
+          message.error('用户信息已更新，请重新登录！')
+        }
+        else message.error('登录失败，账号或密码错误！')
       }
       resolve(data)
     })
@@ -55,8 +63,9 @@ export const initUser = () => {
   const user = storageUtils.getUser()
   if (user.username){
     memoryUtils.userdata = user
-    userlogin(user.username, user.password)
+    return userlogin(user.username, user.password)
   }
+  return null
 }
 /**
  * 检查是否的登录

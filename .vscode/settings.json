@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "group": "MyWeb",
+      "name": "BaseData",
+      "database": "${workspaceFolder:MyWeb}/Server/datas/base.db"
+    }
+  ]
+}

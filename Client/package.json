@@ -13,6 +13,7 @@
     "file-loader": "^6.2.0",
     "less": "^4.1.1",
     "less-loader": "^5.0.0",
+    "markdown-navbar": "^1.4.3",
     "md5": "^2.3.0",
     "raw-loader": "^4.0.2",
     "react": "^17.0.2",
