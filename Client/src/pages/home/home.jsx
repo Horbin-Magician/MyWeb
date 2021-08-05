@@ -3,7 +3,7 @@ import { Input, Row, Col, Radio, message } from 'antd'
 
 import logo from '../../assets/imgs/logo.svg'
 import ResultContent from './components/resultContent'
-import { reqSearch } from '../../api/index'
+import { reqSearch } from '../../api/searchAPI'
 
 /*
 首页的路由组件

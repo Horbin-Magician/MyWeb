@@ -1,6 +1,6 @@
 import { message } from 'antd';
 
-import { reqLogin } from '../api'
+import { reqLogin } from '../api/baseAPI'
 import memoryUtils from './memoryUtils'
 import storageUtils from './storageUtils'
 /**

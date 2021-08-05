@@ -3,7 +3,7 @@ import { Row, Col, Button, Modal, Form, Input, Rate, message, Select } from 'ant
 import { PlusOutlined } from '@ant-design/icons'
 
 import FavouritesCard from '../favCard/favCard'
-import { reqUpdateItem, reqFavTypeList } from '../../../../../api'
+import { reqUpdateItem, reqFavTypeList } from '../../../../../api/favouritesAPI'
 import { checkLogin,addUpdateFun } from '../../../../../utils/userUtils'
 
 /*

@@ -3,7 +3,7 @@ import {Card, Button, Table, message} from 'antd'
 
 import AddForm from './components/addForm'
 import SetForm from './components/setForm'
-import {reqAuthorityList, reqUpdateAuthority, reqDelAuthority} from '../../../../api'
+import {reqAuthorityList, reqUpdateAuthority, reqDelAuthority} from '../../../../api/baseAPI'
 
 /*
 管理-统计

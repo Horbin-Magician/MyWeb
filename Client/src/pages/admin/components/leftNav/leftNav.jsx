@@ -4,7 +4,7 @@ import { Menu, Layout } from 'antd';
 
 import menuList from '../../../../config/adminMenuConfig'
 import './leftNav.less'
-import { reqAuthorityList } from '../../../../api'
+import { reqAuthorityList } from '../../../../api/baseAPI'
 import memoryUtils from '../../../../utils/memoryUtils'
 /*
 左侧导航的组件

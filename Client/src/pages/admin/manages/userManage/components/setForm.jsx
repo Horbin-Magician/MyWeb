@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Modal, Form, Input, Select,message} from 'antd'
 
-import {reqAuthorityList} from '../../../../../api'
+import {reqAuthorityList} from '../../../../../api/baseAPI'
 /*
 管理-统计
  */

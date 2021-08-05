@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Card, Avatar, Rate, message, Modal} from 'antd';
 import {EditOutlined, DeleteOutlined, FrownOutlined} from '@ant-design/icons';
 
-import {reqUpdateItem, reqDelItem} from '../../../../../api'
+import {reqUpdateItem, reqDelItem} from '../../../../../api/favouritesAPI'
 import {checkLogin} from '../../../../../utils/userUtils'
 import './favCard.less'
 

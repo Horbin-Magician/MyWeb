@@ -3,7 +3,7 @@ import {Card, Button, Table, message} from 'antd'
 
 import AddForm from './components/addForm'
 import SetForm from './components/setForm'
-import {reqUserList, reqDelUser, reqUpdateUser} from '../../../../api/index'
+import {reqUserList, reqDelUser, reqUpdateUser} from '../../../../api/baseAPI'
 
 
 /*

@@ -5,7 +5,7 @@ import {
   DeleteOutlined,
 } from '@ant-design/icons';
 
-import { reqFavTypeList, reqDelType, reqUpdateType, reqMoveType } from '../../../../../api'
+import { reqFavTypeList, reqDelType, reqUpdateType, reqMoveType } from '../../../../../api/favouritesAPI'
 import { checkLogin, addUpdateFun } from '../../../../../utils/userUtils'
 import FavInput from '../favInput'
 import FavMenu from '../favMenu'

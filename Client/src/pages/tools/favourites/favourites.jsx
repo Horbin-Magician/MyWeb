@@ -3,7 +3,7 @@ import { Layout } from 'antd'
 
 import LeftNav from './components/leftNav/leftNav'
 import CardContent from './components/cardContent/cardContent'
-import { reqFavItemList } from '../../../api'
+import { reqFavItemList } from '../../../api/favouritesAPI'
 import './favourites.less'
 /*
 头部组件
