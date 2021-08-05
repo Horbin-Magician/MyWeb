@@ -1,42 +1,84 @@
 import { Component } from 'react'
-import { Row, Col, List, Button } from 'antd';
+import { Link } from 'react-router-dom';
+import { Row, Col, List, Button, Input, Menu } from 'antd';
 import { CalendarOutlined, FolderOutlined } from '@ant-design/icons';
 
+import { reqPasTypeList, reqPasArticleList } from '../../../../api/passagesAPI'
 import './psgList.less'
 
 /*
 博客页的路由组件
 */
 export default class PsgList extends Component {
-  state = {
-    myList :     
-      [
-        {title:'50元加入小密圈 胖哥带你学一年',context:'50元跟着胖哥学一年，掌握程序人的学习方法。 也许你刚步入IT行业，也许你遇到了成长瓶颈，也许你不知道该学习什么知识，也许你不会融入团队，也许...........有些时候你陷入彷徨。 你需要一个强力的队友，你需要一个资深老手，你需要一个随时可以帮助你的人，你更需要一个陪你加速前行的。 我在这个行业走了12年，从后端、前端到移动端都从事过，从中走了很多坑，但我有一套适合程序员的学习方法。 如果你愿意，我将带着你在这个程序行业加速奔跑。分享我学习的方法，所学的内容和一切我的资料。 你遇到的职业问题，我也会第一时间给你解答。我需要先感谢一直帮助我的小伙伴，这个博客能产出300多集免费视频，其中有他们的鼎力支持，如果没有他们的支持和鼓励，我可能早都放弃了。 原来我博客只是录制免费视频，然后求30元的打赏。 每次打赏我都会觉得内疚，因为我并没有给你特殊的照顾，也没能从实质上帮助过你。 直到朋友给我介绍了知识星球，它可以专享加入，可以分享知识，可以解答问题，所以我如获珍宝，决定把打赏环节改为知识服务。我定价50元每年，为什么是50元每年？因为这是知识星球允许的最低收费了。'},
-        {title:'React实战视频教程-技术胖Blog开发(更新04集)',context:'50元跟着胖哥学一年，掌握程序人的学习方法。 也许你刚步入IT行业，也许你遇到了成长瓶颈，也许你不知道该学习什么知识，也许你不会融入团队，也许...........有些时候你陷入彷徨。 你需要一个强力的队友，你需要一个资深老手，你需要一个随时可以帮助你的人，你更需要一个陪你加速前行的。 我在这个行业走了12年，从后端、前端到移动端都从事过，从中走了很多坑，但我有一套适合程序员的学习方法。 如果你愿意，我将带着你在这个程序行业加速奔跑。分享我学习的方法，所学的内容和一切我的资料。 你遇到的职业问题，我也会第一时间给你解答。我需要先感谢一直帮助我的小伙伴，这个博客能产出300多集免费视频，其中有他们的鼎力支持，如果没有他们的支持和鼓励，我可能早都放弃了。 原来我博客只是录制免费视频，然后求30元的打赏。 每次打赏我都会觉得内疚，因为我并没有给你特殊的照顾，也没能从实质上帮助过你。 直到朋友给我介绍了知识星球，它可以专享加入，可以分享知识，可以解答问题，所以我如获珍宝，决定把打赏环节改为知识服务。我定价50元每年，为什么是50元每年？因为这是知识星球允许的最低收费了。'},
-        {title:'React服务端渲染框架Next.js入门(共12集)',context:'50元跟着胖哥学一年，掌握程序人的学习方法。 也许你刚步入IT行业，也许你遇到了成长瓶颈，也许你不知道该学习什么知识，也许你不会融入团队，也许...........有些时候你陷入彷徨。 你需要一个强力的队友，你需要一个资深老手，你需要一个随时可以帮助你的人，你更需要一个陪你加速前行的。 我在这个行业走了12年，从后端、前端到移动端都从事过，从中走了很多坑，但我有一套适合程序员的学习方法。 如果你愿意，我将带着你在这个程序行业加速奔跑。分享我学习的方法，所学的内容和一切我的资料。 你遇到的职业问题，我也会第一时间给你解答。我需要先感谢一直帮助我的小伙伴，这个博客能产出300多集免费视频，其中有他们的鼎力支持，如果没有他们的支持和鼓励，我可能早都放弃了。 原来我博客只是录制免费视频，然后求30元的打赏。 每次打赏我都会觉得内疚，因为我并没有给你特殊的照顾，也没能从实质上帮助过你。 直到朋友给我介绍了知识星球，它可以专享加入，可以分享知识，可以解答问题，所以我如获珍宝，决定把打赏环节改为知识服务。我定价50元每年，为什么是50元每年？因为这是知识星球允许的最低收费了。'},
-        {title:'React Hooks 免费视频教程(共11集)',context:'50元跟着胖哥学一年，掌握程序人的学习方法。 也许你刚步入IT行业，也许你遇到了成长瓶颈，也许你不知道该学习什么知识，也许你不会融入团队，也许...........有些时候你陷入彷徨。 你需要一个强力的队友，你需要一个资深老手，你需要一个随时可以帮助你的人，你更需要一个陪你加速前行的。 我在这个行业走了12年，从后端、前端到移动端都从事过，从中走了很多坑，但我有一套适合程序员的学习方法。 如果你愿意，我将带着你在这个程序行业加速奔跑。分享我学习的方法，所学的内容和一切我的资料。 你遇到的职业问题，我也会第一时间给你解答。我需要先感谢一直帮助我的小伙伴，这个博客能产出300多集免费视频，其中有他们的鼎力支持，如果没有他们的支持和鼓励，我可能早都放弃了。 原来我博客只是录制免费视频，然后求30元的打赏。 每次打赏我都会觉得内疚，因为我并没有给你特殊的照顾，也没能从实质上帮助过你。 直到朋友给我介绍了知识星球，它可以专享加入，可以分享知识，可以解答问题，所以我如获珍宝，决定把打赏环节改为知识服务。我定价50元每年，为什么是50元每年？因为这是知识星球允许的最低收费了。'},
-      ]
+  constructor(props) {
+    super(props)
+    this.state = {
+      articleList : [],
+      typeList : [],
+      selectedMenu: '',
+    }
   }
-
+  //组件加载后更新MenuList
+  componentDidMount() {
+    this.setPasTypeList()
+  }
+  setPasTypeList = async () => {
+    const data = await reqPasTypeList()
+    const typeList = data.data
+    this.setState({typeList})
+    this.changeSelectedMenu(typeList[0].name)
+  }
+  getPasArticleList = async (typeName) => {
+    const data = await reqPasArticleList(typeName)
+    const articleList = data.data
+    this.setState({articleList})
+  }
+  //由menuList获得用于渲染的menu节点
+  getMenuNodes = (menuList) => {
+    return menuList.map(item => {
+      return (
+        <Menu.Item key={item.name}>
+          {item.name}
+        </Menu.Item>
+      )
+    })
+  }
+  changeSelectedMenu = (typeName) => {
+    this.getPasArticleList(typeName)
+    this.setState({selectedMenu:typeName})
+  }
+  onMenuSelect = (value) => {
+    this.changeSelectedMenu(value.key)
+  }
   render() {
+    const { typeList, selectedMenu, articleList } = this.state
+    const menuNodes = this.getMenuNodes(typeList)
     return (
       <Row justify='center'>
         <Col className="psgList-left" xs={0} sm={0} md={3} lg={3}>
-          left
+          <Input className="pagList-left-search"/>
+          <Menu className="pagList-left-menu" mode="inline"
+          selectedKeys={[selectedMenu]} onSelect={this.onMenuSelect}>
+            {menuNodes}
+          </Menu>
         </Col>
         <Col className="psgList-main" xs={24} sm={24} md={14} lg={14}>
           <List size="small"
             header = {<Button type='link' className='pick-intelligence'>拾慧：对他人的批判不叫道德，对自己行为的反省才是。</Button>}
             itemLayout = "vertical"
-            dataSource = {this.state.myList}
+            dataSource = {articleList}
             renderItem = {item => (
               <List.Item>
-                <div className="psgList-main-title">{item.title}</div>
-                <div className='psgList-main-icon'>
-                  <span><CalendarOutlined/>&nbsp;2019-06-03</span>
-                  <span><FolderOutlined/>&nbsp;教程</span>
+                <div className="psgList-main-title">
+                  <Link to={{ pathname : 'passages/detail/'+item.ID}}>
+                    {item.title}
+                  </Link>
                 </div>
-                <div className="psgList-main-context">{item.context}</div>
+                <div className='psgList-main-icon'>
+                  <span><CalendarOutlined/>&nbsp;{item.time}</span>
+                  <span><FolderOutlined/>&nbsp;{item.type}</span>
+                </div>
+                <div className="psgList-main-context">{item.introduce}</div>
               </List.Item>
             )}
           />

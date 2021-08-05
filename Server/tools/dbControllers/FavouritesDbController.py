@@ -66,16 +66,14 @@ class FavouritesDbController():
         self.updateType(type[0], type[1]-1)
   # 获取type数据，若title为空，返回所有
   def getTypeData(self, title=None):
+    cursor = None
     if(title == None):
       query = 'SELECT * FROM TYPE ORDER BY RANK ASC'
       cursor = self.c.execute(query)
-      datas = []
-      for cow in cursor:
-        datas.append(cow)
-      return datas
-    query = 'SELECT * FROM TYPE WHERE TITLE=(?)'
-    data = [title]
-    cursor = self.c.execute(query, data)
+    else:
+      query = 'SELECT * FROM TYPE WHERE TITLE=(?)'
+      data = [title]
+      cursor = self.c.execute(query, data)
     datas = []
     for cow in cursor:
       datas.append(cow)
@@ -102,13 +100,10 @@ class FavouritesDbController():
     if(url == None):
       query = 'SELECT * FROM ITEM ORDER BY RANK ASC'
       cursor = self.c.execute(query)
-      datas = []
-      for cow in cursor:
-        datas.append(cow)
-      return datas
-    query = 'SELECT * FROM ITEM WHERE URL=(?)'
-    data = [url]
-    cursor = self.c.execute(query, data)
+    else:
+      query = 'SELECT * FROM ITEM WHERE URL=(?)'
+      data = [url]
+      cursor = self.c.execute(query, data)
     datas = []
     for cow in cursor:
       datas.append(cow)

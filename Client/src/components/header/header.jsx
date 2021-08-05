@@ -41,7 +41,7 @@ class Header extends Component {
     const url = this.props.history.location.pathname.split('/')
     if(url[1] === 'admin')return null;//若为管理界面，隐藏header
     let nowKey = url[url.length - 1] === '' ? 'home' : url[url.length - 1]
-    if(nowKey === 'detailed') nowKey = 'passages'
+    if(url[1] === 'passages') nowKey = 'passages'
     // 判断是否已经登录
     let userBtn = null
     if(checkLogin()){
