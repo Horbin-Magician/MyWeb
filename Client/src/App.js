@@ -1,5 +1,6 @@
 import { Component, lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { message } from 'antd'
 
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
@@ -16,7 +17,11 @@ const Error = lazy(() => import('./pages/others/error'))
 export default class App extends Component {
   constructor(props){
     super(props)
+    this.initApp() //统一初始化App
+  }
+  initApp = ()=>{
     initUser() //初始化User信息
+    message.config({top: 50})
   }
   render() {
     return (

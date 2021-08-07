@@ -5,6 +5,8 @@ import logo from '../../assets/imgs/logo.svg'
 import ResultContent from './components/resultContent'
 import { reqSearch } from '../../api/searchAPI'
 
+import './home.less'
+
 /*
 首页的路由组件
 */
@@ -66,14 +68,14 @@ export default class Home extends Component {
         {/* 搜索框 */}
         <Row justify="center">
           <Col xs={{ span: 22 }} sm={{ span: 22 }} md={{ span: 12 }} lg={{ span: 8 }}>
-            <Input style={{ textAlign: 'center' }} placeholder="填写内容，回车即可搜索"
+            <Input className="search-input" placeholder="填写内容，回车即可搜索"
               onChange={(e) => this.setState({ searchValue: e.target.value })}
               onPressEnter={this.onSearch} />
           </Col>
         </Row>
         {/* 类型选择框 */}
         <Row justify="center" style={{ marginTop: '10px' }}>
-          <Radio.Group onChange={this.onSearchTypeChange} value={this.state.searchType}
+          <Radio.Group onChange={this.onSearchTypeChange} size="middle" value={this.state.searchType}
             options={this.searchTypeOptions} optionType="button" buttonStyle="solid" />
         </Row>
         {/* 搜索内容展示框 */}

@@ -1,15 +1,17 @@
-import {Component, lazy} from 'react'
+import {Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import LeftNav from './components/leftNav/leftNav'
+import Write from './write/write'
 import Home from './home/home'
+import Statistics from './statistics/statistics'
+import UserManage from './manages/userManage/userManage'
+import AuthorityManage from './manages/authorityManage/authorityManage'
+import BaseSetting from './settings/baseSetting'
 import { checkLogin, addUpdateFun } from '../../utils/userUtils'
 
-const Statistics = lazy(() => import('./statistics/statistics'))
-const UserManage = lazy(() => import('./manages/userManage/userManage'))
-const AuthorityManage = lazy(() => import('./manages/authorityManage/authorityManage'))
-const BaseSetting = lazy(() => import('./settings/baseSetting'))
+
 /*
 后台管理页的路由组件
 */ 
@@ -31,6 +33,7 @@ export default class Admin extends Component {
           <Content style={{backgroundColor:'#fff'}} >
             <Switch>
               <Route path='/admin/home' component={Home} />
+              <Route path='/admin/write' component={Write} />
               <Route path='/admin/statistics' component={Statistics} />
               <Route path='/admin/user' component={UserManage} />
               <Route path='/admin/authority' component={AuthorityManage} />
