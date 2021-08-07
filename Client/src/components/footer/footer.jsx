@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { Row, Col} from 'antd';
 
 import beianIcon from '../../assets/imgs/beianIcon.png';
@@ -24,7 +24,9 @@ class Footer extends Component {
           <a href='https://beian.miit.gov.cn'>赣ICP备2021004310号-1</a>
         </Col>
         <Col>
-          ©2021 Horbin
+          <Link to="/about">
+            ©2021 Horbin
+          </Link>
         </Col>
       </Row>
     );

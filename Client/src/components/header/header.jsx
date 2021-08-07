@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { HomeOutlined, ToolOutlined, QuestionCircleOutlined, UserOutlined, MenuOutlined, FileTextOutlined } from '@ant-design/icons'
+import { HomeOutlined, ToolOutlined, UserOutlined, MenuOutlined, FileTextOutlined } from '@ant-design/icons'
 import { Menu, Row, Col, Button, Modal, Affix, Dropdown } from 'antd';
 
 import LoginModal from '../loginModal/loginModal'
@@ -70,14 +70,11 @@ class Header extends Component {
                   <Link to={'/tools/favorites'}>收藏夹</Link>
                 </Item>
               </SubMenu>
-              <Item key="about" icon={<QuestionCircleOutlined />}>
-                <Link to={'/about'}>始末</Link>
-              </Item>
             </Menu>
           </Col>
-          <Col>{userBtn}</Col>
-          <LoginModal switchShow={this.switchLoginShow} showLogin={this.state.showLogin} />
         </Row>
+        <div className="userbtn">{userBtn}</div>
+        <LoginModal switchShow={this.switchLoginShow} showLogin={this.state.showLogin} />
       </Affix>
     )
   }
