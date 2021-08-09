@@ -46,7 +46,7 @@ class Header extends Component {
     let userBtn = null
     if(checkLogin()){
       userBtn = (
-        <Dropdown overlay={userMenu} trigger={['click']} placement="bottomCenter" arrow>
+        <Dropdown overlay={userMenu} trigger={['click']} placement="bottomRight" arrow>
           <Button type="primary" shape='circle'><MenuOutlined /></Button>
         </Dropdown>
       )

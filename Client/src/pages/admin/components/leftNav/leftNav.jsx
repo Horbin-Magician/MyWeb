@@ -37,7 +37,7 @@ export default class LeftNav extends Component {
       if (newMenus.indexOf(item.key) !== -1) {
         if (!item.children) {
           return (
-            <Menu.Item key={item.key} icon={<item.icon />}>
+            <Menu.Item key={item.key}>
               <Link to={'/admin/' + item.key}>{item.title}</Link>
             </Menu.Item>
           )
@@ -45,7 +45,7 @@ export default class LeftNav extends Component {
           let cItem = item.children.find(cItem => cItem.key === this.props.path.split('/')[2])
           if (cItem) this.openKey = item.key
           return (
-            <SubMenu key={item.key} icon={<item.icon />} title={item.title}>
+            <SubMenu key={item.key} title={item.title}>
               {this.getMenuNodes(item.children, menus)}
             </SubMenu>
           )
@@ -57,7 +57,7 @@ export default class LeftNav extends Component {
 
   render() {
     return (
-      <Sider className='left-nav'>
+      <Sider className='left-nav' width='140'>
         <Link to='/' className='left-nav-header'>
           <h1>云边小铺</h1>
         </Link>

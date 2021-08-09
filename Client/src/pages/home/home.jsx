@@ -75,11 +75,13 @@ export default class Home extends Component {
         </Row>
         {/* 类型选择框 */}
         <Row justify="center" style={{ marginTop: '10px' }}>
-          <Radio.Group onChange={this.onSearchTypeChange} size="middle" value={this.state.searchType}
-            options={this.searchTypeOptions} optionType="button" buttonStyle="solid" />
+          <Col span={logoSpan}>
+            <Radio.Group onChange={this.onSearchTypeChange} size="middle" value={this.state.searchType}
+              options={this.searchTypeOptions} optionType="button" buttonStyle="solid" />
+          </Col>
         </Row>
         {/* 搜索内容展示框 */}
-        <Row justify="center" style={{ marginTop: '10px' }}>
+        <Row justify="center">
           <Col span={resultContentSpan}>
             <ResultContent searchType={this.state.searchType} result={this.state.searchResult}
               loading={this.state.searchResultLoading} />
