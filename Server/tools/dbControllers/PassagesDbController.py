@@ -36,12 +36,12 @@ class PassagesDbController():
       self.c.execute(query, data)
     if(ID != None):
       if(name):
-        query = '''UPDATE ARTICLE_TYPE SET NAME=(?) WHERE ID=(?)'''
-        data = [name, id]
+        query = '''UPDATE ARTICLE_TYPE SET TYPE_NAME=(?) WHERE ID=(?)'''
+        data = [name, ID]
         self.c.execute(query, data)
       if(rank):
         query = '''UPDATE ARTICLE_TYPE SET RANK=(?) WHERE ID=(?)'''
-        data = [rank, id]
+        data = [rank, ID]
         self.c.execute(query, data)
     self.conn.commit()
   # 删除类别
@@ -75,23 +75,6 @@ class PassagesDbController():
     for cow in cursor:
       datas.append(cow)
     return datas
-  # 移动type
-  def moveType(self, fromID, toID):
-    datas = self.getType()
-    fRank, tRank = 0, 0
-    for data in datas:
-      if(data[0] == fromID):
-        fRank = data[2]
-      if(data[0] == toID):
-        tRank = data[2]
-    self.updateType(fromID, rank=tRank)
-    for data in datas:
-      if(fRank > tRank):
-        if(data[2] < fRank and data[2] >= tRank):
-          self.updateType(data[0], rank = data[2]+1)
-      else:
-        if(data[2] > fRank and data[2] <= tRank):
-          self.updateType(data[0], rank = data[2]-1)
   # 获取Article数据
   def getArticleDetail(self, ID=None):
     if(ID == None):
