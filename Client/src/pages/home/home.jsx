@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Row, Col, Radio, message } from 'antd'
+import { Input, Row, Col, Radio, message, Slider } from 'antd'
 
 import logo from '../../assets/imgs/logo.svg'
 import ResultContent from './components/resultContent'
@@ -25,8 +25,12 @@ export default class Home extends Component {
   ];
 
   onSearch = () => {
-    if (this.state.showState === 'normal') this.setState({ showState: 'search' })
-    this.getSearchResult()
+    if(this.state.searchType === 'web'){
+      window.location.href="https://www.baidu.com/s?ie=utf-8&wd="+this.state.searchValue; 
+    }else{
+      if (this.state.showState === 'normal') this.setState({ showState: 'search' })
+      this.getSearchResult()
+    }
   }
 
   getSearchResult = async (type = this.state.searchType) => {
@@ -38,11 +42,6 @@ export default class Home extends Component {
       message.info(searchResult['errorMessage'])
       this.setState({ searchResultLoading: false, showState: 'normal' })
     }
-  }
-
-  onSearchTypeChange = e => {
-    this.setState({ searchType: e.target.value })
-    if (this.state.showState === 'search') this.getSearchResult(e.target.value)
   }
 
   render() {
@@ -61,9 +60,7 @@ export default class Home extends Component {
       <div style={divStyle}>
         {/* LOGO */}
         <Row justify="center" style={{ marginBottom: '10px' }}>
-          <Col span={logoSpan}>
-            <img src={logo} height="100" alt="logo"></img>
-          </Col>
+          <Col span={logoSpan}><img src={logo} height="100" alt="logo"></img></Col>
         </Row>
         {/* 搜索框 */}
         <Row justify="center">
@@ -73,10 +70,10 @@ export default class Home extends Component {
               onPressEnter={this.onSearch} />
           </Col>
         </Row>
-        {/* 类型选择框 */}
+        {/* 搜索类型选择 */}
         <Row justify="center" style={{ marginTop: '10px' }}>
           <Col span={logoSpan}>
-            <Radio.Group onChange={this.onSearchTypeChange} size="middle" value={this.state.searchType}
+            <Radio.Group size="middle" value={this.state.searchType}
               options={this.searchTypeOptions} optionType="button" buttonStyle="solid" />
           </Col>
         </Row>

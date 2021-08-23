@@ -1,7 +1,7 @@
 from flask import views,request
 import json
 
-from tools.spiders import baiduSpider, btsowSpider
+from tools.spiders import btsowSpider
 
 class SearchView(views.View):
   methods = ['POST']
@@ -10,8 +10,6 @@ class SearchView(views.View):
   def dispatch_request(self):
     type = request.json.get('type')
     key = request.json.get('key')
-    if(type == 'web'):
-      datas = baiduSpider.get_data(key)
-    elif(type == 'file'):
+    if(type == 'file'):
       datas = btsowSpider.get_data(key)
     return json.dumps(datas)
