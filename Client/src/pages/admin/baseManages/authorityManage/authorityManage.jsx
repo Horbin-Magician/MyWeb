@@ -64,13 +64,13 @@ export default class UserManage extends Component{
         const title=(
             <span style={{lineHeight:"48px"}}>
                 <Button type='primary' onClick={()=>{this.setState({showStatus:1})}}>
-                    创建角色
+                    创建
                 </Button> &nbsp;
                 <Button type='primary' onClick={this.delRole} disabled={!role.name}>
-                    删除角色
+                    删除
                 </Button> &nbsp;
                 <Button type='primary' onClick={()=>{this.setState({showStatus:2})}} disabled={!role.name}>
-                    设置角色权限
+                    编辑
                 </Button>
             </span>
         )

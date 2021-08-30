@@ -42,24 +42,24 @@ class PasArticleView(views.View):
         return_datas.append(return_data)
       return_dict['status'] = '0'
       return_dict['data'] = return_datas
-    # if(session.get('user_info')):# 权限判断
-    #     if(type == 'update'):         # 更新
-    #         url = request.json.get('url')
-    #         favType = request.json.get('favType')
-    #         title = request.json.get('title')
-    #         rank = request.json.get('rank')
-    #         iconUrl = request.json.get('iconUrl')
-    #         description = request.json.get('description')
-    #         oldUrl = request.json.get('oldUrl')
-    #         if(oldUrl):
-    #             db.updateItem(url, favType, title, rank,
-    #                           iconUrl, description, oldUrl)
-    #         else:
-    #             db.updateItem(url, favType, title, rank,
-    #                           iconUrl, description)
-    #         return_dict['status'] = '0'
-    #     if(type == 'del'):            # 删除
-    #         url = request.json.get('url')
-    #         db.delItem(url)
-    #         return_dict['status'] = '0'
+    if(session.get('user_info')):# 权限判断
+      if(type == 'update'):         # 更新
+        # url = request.json.get('url')
+        # favType = request.json.get('favType')
+        # title = request.json.get('title')
+        # rank = request.json.get('rank')
+        # iconUrl = request.json.get('iconUrl')
+        # description = request.json.get('description')
+        # oldUrl = request.json.get('oldUrl')
+        # if(oldUrl):
+        #     db.updateItem(url, favType, title, rank,
+        #                   iconUrl, description, oldUrl)
+        # else:
+        #     db.updateItem(url, favType, title, rank,
+        #                   iconUrl, description)
+        return_dict['status'] = '0'
+      if(type == 'del'):            # 删除
+        ID = request.json.get('ID')
+        db.delArticle(ID)
+        return_dict['status'] = '0'
     return json.dumps(return_dict)

@@ -20,9 +20,9 @@ export const reqUpdatePasType = (ID, name, rank) => {
 export const reqPasArticleList = (typeName=undefined) => ajax('/api/passages/pasarticle', {'type':'getList', typeName}, 'POST')
 //获取文章详情
 export const reqPasArticleDetail = (ID=undefined) => ajax('/api/passages/pasarticle', {'type':'getDetail', ID}, 'POST')
-// //删除文章
-// export const reqDelItem = (url) => ajax('/api/favourites/favitem', {'type':'del', url}, 'POST')
+//删除文章
+export const reqDelArticleItem = (ID) => ajax('/api/passages/pasarticle', {'type':'del', ID}, 'POST')
 // //更新文章
-// export const reqUpdateItem = (url, favType, title, rank, iconUrl, description, oldUrl=undefined) => {
+// export const reqUpdatePasItem = (url, favType, title, rank, iconUrl, description, oldUrl=undefined) => {
 //   return ajax('/api/favourites/favitem', {'type':'update', url, favType, title, rank, iconUrl, description, oldUrl}, 'POST')
 // }

@@ -5,9 +5,9 @@ import { reqPasTypeList, reqDelPasType, reqUpdatePasType } from '../../../../api
 
 
 /*
-文章管理-文章类别
+文章管理-文章列表
  */
-export default class psgTypeMng extends Component {
+export default class pickIntelligence extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -58,7 +58,7 @@ export default class psgTypeMng extends Component {
       }
       else message.error('删除类别失败！')
     })
-    this.setState({ type: {} })
+    this.setState({ user: {} })
   }
 
   onRow = (type) => {

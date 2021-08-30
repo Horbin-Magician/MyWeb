@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Row, Col, Radio, message, Slider } from 'antd'
+import { Input, Row, Col, Radio, message } from 'antd'
 
 import logo from '../../assets/imgs/logo.svg'
 import ResultContent from './components/resultContent'
