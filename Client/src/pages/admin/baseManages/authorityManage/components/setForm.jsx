@@ -9,17 +9,17 @@ const {TreeNode} = Tree
 
 export default class AddForm extends Component{
     constructor(props){
-        super(props)
-        this.state = {checkedKeys: {}}
-        this.menuNodes = this.getMenuNodes(menuList)
+      super(props)
+      this.state = {checkedKeys: {}}
+      this.menuNodes = this.getMenuNodes(menuList)
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
-        if(nextProps.showStatus === 0){
-            const nextMenus = nextProps.role.menus ? nextProps.role.menus.split('/') : {}
-            if(nextMenus !== prevState.checkedKeys)return{checkedKeys:nextMenus}
-        }
-        return null
+      if(nextProps.showStatus === 0){
+        const nextMenus = nextProps.role.menus ? nextProps.role.menus.split('/') : {}
+        if(nextMenus !== prevState.checkedKeys)return{checkedKeys:nextMenus}
+      }
+      return null
     }
 
     setRole = ()=>{
