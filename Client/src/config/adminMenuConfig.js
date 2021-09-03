@@ -8,8 +8,7 @@ const adminMenuList = [
   },
   {key: 'manages-passages',title: '文章管理',
     children: 
-      [{key: 'write',title: '写作台',},
-      {key: 'passage-type',title: '文章类别',}, 
+      [{key: 'passage-type',title: '文章类别',}, 
       {key: 'passage-list',title: '文章条目',},
       {key: 'pick-intelligence',title: '拾慧管理',},
     ],

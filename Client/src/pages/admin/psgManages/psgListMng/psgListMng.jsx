@@ -22,15 +22,8 @@ export default class psgListMng extends Component {
 
   updatePasList = () => reqPasArticleList().then(data => this.setState({ articleList: data.data }))
 
-  updatePasItem = (ID, name, rank) => {
-    // reqUpdatePasItem(ID, name, rank).then(data => {
-    //   if (data.status === '0') {
-    //     message.success('更新文章类别成功！')
-    //     this.updateArticleListList()
-    //   }
-    //   else message.error('更新文章类别失败！')
-    // })
-    // this.setState({ ArticleList: {}, showStatus: 0 })
+  updatePasItem = () => {
+    this.props.history.push("/admin/write/"+this.state.item.ID)
   }
 
   delPasItem = () => {

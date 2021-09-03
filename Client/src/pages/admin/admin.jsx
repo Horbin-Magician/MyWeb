@@ -36,13 +36,13 @@ export default class Admin extends Component {
           <Content style={{backgroundColor:'#fff'}} >
             <Switch>
               <Route path='/admin/home' component={Home} />
-              <Route path='/admin/write' component={Write} />
+              <Route path='/admin/write/:id' component={Write} />
               <Route path='/admin/statistics' component={Statistics} />
               <Route path='/admin/user' component={UserManage} />
               <Route path='/admin/authority' component={AuthorityManage} />
               <Route path='/admin/passage-type' component={psgTypeMng} />
               <Route path='/admin/passage-list' component={psgListMng} />
-              <Route path='/admin/pickIntelligence' component={pickIntelligence} />
+              <Route path='/admin/pick-intelligence' component={pickIntelligence} />
               <Route path='/admin/base' component={BaseSetting} />
               <Redirect to='/admin/home' />
             </Switch>
