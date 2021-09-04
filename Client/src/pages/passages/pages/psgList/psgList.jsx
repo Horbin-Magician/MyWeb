@@ -29,8 +29,12 @@ export default class PsgList extends Component {
     this.changeSelectedMenu(typeList[0].name)
   }
   getPasArticleList = async (typeName) => {
-    const data = await reqPasArticleList(typeName)
-    const articleList = data.data
+    const choosedType = this.state.typeList.find(item=>item.name === typeName)
+    const data = await reqPasArticleList(choosedType.ID)
+    let articleList = data.data
+    articleList.forEach(element => {
+      element.type =  this.state.typeList.find(item=>item.ID === element.type).name
+    })
     this.setState({articleList})
   }
   //由menuList获得用于渲染的menu节点

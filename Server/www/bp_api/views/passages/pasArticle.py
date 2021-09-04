@@ -28,7 +28,6 @@ class PasArticleView(views.View):
     elif(type == 'getDetail'):                # 获取文章详情
       ID = request.json.get('ID')
       datas = db.getArticleDetail(ID)
-      print(datas)
       return_datas = []
       for data in datas:
         return_data = {}
@@ -44,19 +43,14 @@ class PasArticleView(views.View):
       return_dict['data'] = return_datas
     if(session.get('user_info')):# 权限判断
       if(type == 'update'):         # 更新
-        # url = request.json.get('url')
-        # favType = request.json.get('favType')
-        # title = request.json.get('title')
-        # rank = request.json.get('rank')
-        # iconUrl = request.json.get('iconUrl')
-        # description = request.json.get('description')
-        # oldUrl = request.json.get('oldUrl')
-        # if(oldUrl):
-        #     db.updateItem(url, favType, title, rank,
-        #                   iconUrl, description, oldUrl)
-        # else:
-        #     db.updateItem(url, favType, title, rank,
-        #                   iconUrl, description)
+        ID = request.json.get('ID')
+        articleType = request.json.get('articleType')
+        title = request.json.get('title')
+        introduce = request.json.get('introduce')
+        content = request.json.get('content')
+        ifMenu = request.json.get('ifMenu')
+        time = request.json.get('time')
+        db.updateArticle(ID, articleType, title, introduce, content, ifMenu, time)
         return_dict['status'] = '0'
       if(type == 'del'):            # 删除
         ID = request.json.get('ID')

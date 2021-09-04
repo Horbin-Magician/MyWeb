@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import MarkNav from 'markdown-navbar'
 import 'markdown-navbar/dist/navbar.css'
 
-import { reqPasArticleDetail } from '../../../../api/passagesAPI'
+import { reqPasTypeList, reqPasArticleDetail } from '../../../../api/passagesAPI'
 import './psgDetail.less'
 
 /*
@@ -17,15 +17,23 @@ export default class PsgDetail extends Component {
     super(props)
     this.state = {
       article : [],
+      typeList : null,
     }
   }
   //组件加载后更新Article
   componentDidMount() {
+    this.setPasTypeList()
     this.setArticle()
+  }
+  setPasTypeList = async () => {
+    const data = await reqPasTypeList()
+    const typeList = data.data
+    this.setState({typeList})
   }
   setArticle = async () => {
     const data = await reqPasArticleDetail(this.props.match.params.id)
     const article = data.data[0]
+    if(this.state.typeList)article.type =  this.state.typeList.find(item=>item.ID === article.type).name
     article.content =  article.content.replaceAll('\\n', '\n')//TODO 需要删除
     this.setState({article})
   }
@@ -33,7 +41,7 @@ export default class PsgDetail extends Component {
     const { article } = this.state
     return (
       <Row justify='center'>
-        <Col className="psgDetail-left" xs={0} sm={0} md={3} lg={3}>
+        <Col className="psgDetail-left" xs={0} sm={0} md={article.ifMenu ? 3:0} lg={article.ifMenu ? 3:0}>
           <Affix offsetTop={50}>
             <MarkNav className='psgDetail-left-menu' ordered={false}
               source={article.content}/>

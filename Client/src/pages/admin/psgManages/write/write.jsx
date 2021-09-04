@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { Row, Col, Input, Select, Button, DatePicker, Space, InputNumber, Form, message } from 'antd'
+import { Row, Col, Input, Select, Button, DatePicker, Space, Form, message } from 'antd'
 import ReactMarkdown from 'react-markdown'
 
-import { reqPasTypeList, reqPasArticleDetail } from '../../../../api/passagesAPI'
+import { reqPasTypeList, reqPasArticleDetail, reqUpdatePasItem } from '../../../../api/passagesAPI'
 
 import './write.less'
 
@@ -30,29 +30,35 @@ export default class BaseSetting extends Component {
     reqPasTypeList().then(data => {
       this.setState({typeList:data.data})
     })
-    reqPasArticleDetail(this.props.match.params.id).then(data => {
-      let fieldsValue = data.data[0]
-      fieldsValue['time'] = moment(fieldsValue['time'], 'YYYY年MM月DD日')
-      this.formRef.current.setFieldsValue(data.data[0])
-      this.onFormValuesChange(data.data[0])
-    })
+    const ID = this.props.match.params.id
+    if(ID != 0){
+      reqPasArticleDetail(ID).then(data => {
+        let fieldsValue = data.data[0]
+        fieldsValue['time'] = moment(fieldsValue['time'], 'YYYY年MM月DD日')
+        this.formRef.current.setFieldsValue(data.data[0])
+        this.onFormValuesChange(data.data[0])
+      })
+    }
   }
 
   updateArticle = ()=>{
     this.formRef.current.validateFields().then(values => {
       let updateData = values
       updateData.time = updateData.time.format('YYYY年MM月DD日')
-      console.log(updateData.time)
-      // this.formRef.current.resetFields()
-      // this.updatePasType(values.ID, values.name, values.rank)
-      // this.formRef.current.setFieldsValue({ ID: 2 })
-      // console.log(values)
+      updateData.ifMenu = 0
+      updateData.ID = parseInt(this.props.match.params.id)
+      reqUpdatePasItem(updateData.ID, updateData.type, updateData.title, updateData.introduce, 
+      updateData.content, updateData.ifMenu, updateData.time).then(data => {
+        if (data.status === '0') {
+          message.success('更新文章成功！')
+        }
+        else message.error('更新文章失败！')
+      })
     })
     .catch(info => message.error('请正确填写内容！' + info));
   }
 
   onFormValuesChange = (v) => {
-    console.log(v)
     if(v.introduce){
       this.setState({introduce:v.introduce})
       this.introduceHtml.current.scrollTop = this.introduceHtml.current.scrollTopMax
@@ -78,7 +84,7 @@ export default class BaseSetting extends Component {
       <div className="write">
         <Row>
           <Space>
-            <Button className="write-option" type="primary" onClick={this.updateArticle}>发布文章</Button>
+            <Button className="write-option" type="primary" onClick={this.updateArticle}>提交</Button>
           </Space>
         </Row>
         <Form ref={this.formRef} onValuesChange={this.onFormValuesChange}>
@@ -97,7 +103,6 @@ export default class BaseSetting extends Component {
               <Form.Item name='type'>
                 <Select size="large" className="passage-type">
                   {typeOptions}
-                  {/* <Option value={1}>{123}</Option> */}
                 </Select>
               </Form.Item>
             </Col>

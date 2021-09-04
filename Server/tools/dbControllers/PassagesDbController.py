@@ -21,7 +21,7 @@ class PassagesDbController():
     RANK        INT                 NOT NULL);''')
     self.c.execute('''CREATE TABLE ARTICLE
     (ID           INTEGER PRIMARY KEY AUTOINCREMENT,
-    TYPE          TEXT                NOT NULL,
+    TYPE          INT                NOT NULL,
     TITLE         TEXT                NOT NULL,
     INTRODUCE     TEXT                NOT NULL,
     CONTENT       TEXT                NOT NULL,
@@ -102,12 +102,12 @@ class PassagesDbController():
       datas.append(cow)
     return datas
   # 更新Article
-  def updateArticle(self, ID=None, type=None, title=None, introduce=None, content=None, ifMenu=None, time=None):
+  def updateArticle(self, ID=0, articleType=None, title=None, introduce=None, content=None, ifMenu=None, time=None):
     query, data = '', []
-    if(ID):# 若ID不为空，修改数据
+    if(ID != 0):# 若ID不为空，修改数据
       if(type):
         query = '''UPDATE ARTICLE SET TYPE=(?) WHERE ID=(?)'''
-        data = [type, ID]
+        data = [articleType, ID]
         self.c.execute(query, data)
       if(title):
         query = '''UPDATE ARTICLE SET TITLE=(?) WHERE ID=(?)'''
@@ -131,7 +131,7 @@ class PassagesDbController():
         self.c.execute(query, data)
     else:# 若ID为空,插入数据
       query = '''INSERT INTO ARTICLE (TYPE,TITLE,INTRODUCE,CONTENT,IF_MENU,TIME) VALUES (?,?,?,?,?,?)'''
-      data = [type, title, introduce, content, ifMenu, time]
+      data = [articleType, title, introduce, content, ifMenu, time]
       self.c.execute(query, data)
     self.conn.commit()
   # 删除Article
@@ -144,3 +144,4 @@ class PassagesDbController():
 # test code
 if __name__ == '__main__':
   db = PassagesDbController()
+  db.initDb()

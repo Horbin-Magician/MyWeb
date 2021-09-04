@@ -49,6 +49,9 @@ export default class psgListMng extends Component {
     const { articleList, item } = this.state
     const title = (
       <span style={{ lineHeight: "48px" }}>
+        <Button type='primary' onClick={()=>this.props.history.push("/admin/write/0")}>
+          创建
+        </Button> &nbsp;
         <Button type='primary' onClick={this.delPasItem} disabled={!item.ID}>
           删除
         </Button> &nbsp;

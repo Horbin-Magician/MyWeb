@@ -56,25 +56,27 @@ class Header extends Component {
     // 渲染页面
     return (
       <Affix offsetTop={0}>
-        <Row className='header' align='middle' justify="center">
-          <Col>
-            <Menu className='header-menu' mode="horizontal" selectedKeys={[nowKey]}>
-              <Item key="home" icon={<HomeOutlined />}>
-                <Link to={'/'}>源初</Link>
-              </Item>
-              <Item key="passages" icon={<FileTextOutlined />}>
-                <Link to={'/passages'}>夕拾</Link>
-              </Item>
-              <SubMenu key="tools" title="机巧" icon={<ToolOutlined />}>
-                <Item key="favorites">
-                  <Link to={'/tools/favorites'}>收藏夹</Link>
+        <div>
+          <Row className='header' align='middle' justify="center">
+            <Col>
+              <Menu className='header-menu' mode="horizontal" selectedKeys={[nowKey]}>
+                <Item key="home" icon={<HomeOutlined />}>
+                  <Link to={'/'}>源初</Link>
                 </Item>
-              </SubMenu>
-            </Menu>
-          </Col>
-        </Row>
-        <div className="userbtn">{userBtn}</div>
-        <LoginModal switchShow={this.switchLoginShow} showLogin={this.state.showLogin} />
+                <Item key="passages" icon={<FileTextOutlined />}>
+                  <Link to={'/passages'}>夕拾</Link>
+                </Item>
+                <SubMenu key="tools" title="机巧" icon={<ToolOutlined />}>
+                  <Item key="favorites">
+                    <Link to={'/tools/favorites'}>收藏夹</Link>
+                  </Item>
+                </SubMenu>
+              </Menu>
+            </Col>
+          </Row>
+          <div className="userbtn">{userBtn}</div>
+          <LoginModal switchShow={this.switchLoginShow} showLogin={this.state.showLogin} />
+        </div>
       </Affix>
     )
   }
