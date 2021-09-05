@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Row, Col} from 'antd';
 
-import beianIcon from '../../assets/imgs/beianIcon.png';
+// import beianIcon from '../../assets/imgs/beianIcon.png';
 import './footer.less'
 /*
 首页的路由组件
@@ -16,7 +16,7 @@ class Footer extends Component {
     return (
       <Row className='footer' justify="center" gutter={{ xs: 8, sm: 16, md: 24}}>
         <Col>
-          <img src={beianIcon} alt='' />
+          {/* <img src={beianIcon} alt='' /> */}
           <a target="_blank" rel="noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102004461">
           鄂公网安备 42011102004461号</a>
         </Col>

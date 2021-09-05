@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { Row, Col, Input, Select, Button, DatePicker, Space, Form, message } from 'antd'
-import ReactMarkdown from 'react-markdown'
+import MyMarkdown from '../../../../components/myMarkdown/myMarkdown'
 
 import { reqPasTypeList, reqPasArticleDetail, reqUpdatePasItem } from '../../../../api/passagesAPI'
 
@@ -31,7 +31,7 @@ export default class BaseSetting extends Component {
       this.setState({typeList:data.data})
     })
     const ID = this.props.match.params.id
-    if(ID != 0){
+    if(ID !== 0){
       reqPasArticleDetail(ID).then(data => {
         let fieldsValue = data.data[0]
         fieldsValue['time'] = moment(fieldsValue['time'], 'YYYY年MM月DD日')
@@ -115,7 +115,7 @@ export default class BaseSetting extends Component {
             </Col>
             <Col span={12}>
               <div className="show-html show-introduce-html" ref={this.introduceHtml}>
-                <ReactMarkdown>{introduce}</ReactMarkdown>
+                <MyMarkdown content={introduce}/>
               </div>
             </Col>
           </Row>
@@ -127,7 +127,7 @@ export default class BaseSetting extends Component {
             </Col>
             <Col span={12}>
               <div className="show-html show-content-html" ref={this.contentHtml}>
-                <ReactMarkdown>{content}</ReactMarkdown>
+                <MyMarkdown content={content}/>
               </div>
             </Col>
           </Row>

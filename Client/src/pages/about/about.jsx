@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import ReactMarkdown from 'react-markdown';
+import MyMarkdown from '../../components/myMarkdown/myMarkdown';
 import { Col,Row,Switch } from 'antd';
 import { SmileOutlined } from '@ant-design/icons'
 
@@ -26,7 +26,10 @@ export default class About extends Component {
         </Row>
         <Row justify='center'>
           <Col xs={{ span: 22 }} sm={{ span: 20 }} md={{ span: 16 }} lg={{ span: 12 }}>
-            <ReactMarkdown children={this.state.aboutContent}/>
+            <MyMarkdown>
+              
+            </MyMarkdown>
+            {/* <ReactMarkdown children={this.state.aboutContent}/> */}
           </Col>
         </Row>
       </div>
