@@ -26,10 +26,7 @@ export default class About extends Component {
         </Row>
         <Row justify='center'>
           <Col xs={{ span: 22 }} sm={{ span: 20 }} md={{ span: 16 }} lg={{ span: 12 }}>
-            <MyMarkdown>
-              
-            </MyMarkdown>
-            {/* <ReactMarkdown children={this.state.aboutContent}/> */}
+            <MyMarkdown content={this.state.aboutContent}/>
           </Col>
         </Row>
       </div>

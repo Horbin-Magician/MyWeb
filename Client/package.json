@@ -28,9 +28,9 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "prebuild": "rm -rf ../Server/www/bp_web/templates/index.html && rm -rf ../Server/www/static/build",
+    "prebuild": "wsl rm -rf ../Server/www/bp_web/templates/index.html && wsl rm -rf ../Server/www/static/build",
     "build": "react-app-rewired build",
-    "postbuild": "mv build/index.html ../Server/www/bp_web/templates/ &&  mv build ../Server/www/static/",
+    "postbuild": "wsl mv build/index.html ../Server/www/bp_web/templates/ &&  wsl mv build ../Server/www/static/",
     "test": "react--app-rewired test",
     "eject": "react-scripts eject"
   },
