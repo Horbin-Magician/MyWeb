@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { HomeOutlined, ToolOutlined, UserOutlined, MenuOutlined, FileTextOutlined } from '@ant-design/icons'
+import { UserOutlined, MenuOutlined } from '@ant-design/icons'
 import { Menu, Row, Col, Button, Modal, Affix, Dropdown } from 'antd';
 
 import LoginModal from '../loginModal/loginModal'
@@ -60,13 +60,10 @@ class Header extends Component {
           <Row className='header' align='middle' justify="center">
             <Col>
               <Menu className='header-menu' mode="horizontal" selectedKeys={[nowKey]}>
-                <Item key="home" icon={<HomeOutlined />}>
+                <Item key="home">
                   <Link to={'/'}>源初</Link>
                 </Item>
-                <Item key="passages" icon={<FileTextOutlined />}>
-                  <Link to={'/passages'}>夕拾</Link>
-                </Item>
-                <SubMenu key="tools" title="机巧" icon={<ToolOutlined />}>
+                <SubMenu key="tools" title="机巧">
                   <Item key="favorites">
                     <Link to={'/tools/favorites'}>收藏夹</Link>
                   </Item>

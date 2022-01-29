@@ -7,10 +7,6 @@ import Home from './home/home'
 import Statistics from './statistics/statistics'
 import UserManage from './baseManages/userManage/userManage'
 import AuthorityManage from './baseManages/authorityManage/authorityManage'
-import psgTypeMng from './psgManages/psgTypeMng/psgTypeMng'
-import psgListMng from './psgManages/psgListMng/psgListMng'
-import Write from './psgManages/write/write'
-import pickIntelligence from './psgManages/pickIntelligence/pickIntelligence'
 import BaseSetting from './settings/baseSetting'
 import { checkLogin, addUpdateFun } from '../../utils/userUtils'
 
@@ -36,13 +32,9 @@ export default class Admin extends Component {
           <Content style={{backgroundColor:'#fff'}} >
             <Switch>
               <Route path='/admin/home' component={Home} />
-              <Route path='/admin/write/:id' component={Write} />
               <Route path='/admin/statistics' component={Statistics} />
               <Route path='/admin/user' component={UserManage} />
               <Route path='/admin/authority' component={AuthorityManage} />
-              <Route path='/admin/passage-type' component={psgTypeMng} />
-              <Route path='/admin/passage-list' component={psgListMng} />
-              <Route path='/admin/pick-intelligence' component={pickIntelligence} />
               <Route path='/admin/base' component={BaseSetting} />
               <Redirect to='/admin/home' />
             </Switch>

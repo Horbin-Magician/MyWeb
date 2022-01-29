@@ -6,8 +6,6 @@ from .views.user import UserView
 from .views.favourites.favType import FavTypeView
 from .views.favourites.favItem import FavItemView
 from .views.search import SearchView
-from .views.passages.pasType import PasTypeView
-from .views.passages.pasArticle import PasArticleView
 
 api = Blueprint('api', __name__)
 # 基础API
@@ -19,6 +17,3 @@ api.add_url_rule('/favourites/favtype', view_func=FavTypeView.as_view(name='favt
 api.add_url_rule('/favourites/favitem', view_func=FavItemView.as_view(name='favitem'))
 # 搜索API
 api.add_url_rule('/search', view_func=SearchView.as_view(name='search'))
-# 文章API
-api.add_url_rule('/passages/pastype', view_func=PasTypeView.as_view(name='pastype'))
-api.add_url_rule('/passages/pasarticle', view_func=PasArticleView.as_view(name='pasarticle'))

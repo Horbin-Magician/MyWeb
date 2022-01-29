@@ -9,7 +9,6 @@ import { initUser } from './utils/userUtils'
 
 const Admin = lazy(() => import('./pages/admin/admin'))
 const Home = lazy(() => import('./pages/home/home'))
-const Passages = lazy(() => import('./pages/passages/passages'))
 const Tools = lazy(() => import('./pages/tools/tools'))
 const About = lazy(() => import('./pages/about/about'))
 const Error = lazy(() => import('./pages/others/error'))
@@ -30,7 +29,6 @@ export default class App extends Component {
           <Header />
           <div style={{minHeight:'calc(100% - 5rem)'}}>
             <Switch>
-              <Route path='/passages' component={Passages}></Route>
               <Route path='/tools' component={Tools}></Route>
               <Route path='/about' component={About}></Route>
               <Route path='/admin' component={Admin}></Route>
