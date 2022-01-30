@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/pages/home/home.less"],"names":[],"mappings":"AAAA,cACE,iBAAA,CACA,kBAAA,CACA,wBAAA,CACA,aAAA,CACA,cACF","file":"9.358ae15a.chunk.css","sourcesContent":[".search-input{\n  text-align: center;\n  border-radius: 10px;\n  border: 1px solid #1890ff;\n  height: 2.2rem;\n  font-size: 1rem;\n}"]}
