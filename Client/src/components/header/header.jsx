@@ -63,11 +63,9 @@ class Header extends Component {
                 <Item key="home">
                   <Link to={'/'}>源初</Link>
                 </Item>
-                <SubMenu key="tools" title="机巧">
-                  <Item key="favorites">
-                    <Link to={'/tools/favorites'}>收藏夹</Link>
-                  </Item>
-                </SubMenu>
+                <Item key="favorites">
+                  <Link to={'/tools/favorites'}>收藏夹</Link>
+                </Item>
               </Menu>
             </Col>
           </Row>
