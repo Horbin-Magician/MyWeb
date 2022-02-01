@@ -61,7 +61,7 @@ class Header extends Component {
             <Col>
               <Menu className='header-menu' mode="horizontal" selectedKeys={[nowKey]}>
                 <Item key="home">
-                  <Link to={'/'}>源初</Link>
+                  <Link to={'/'}>首页</Link>
                 </Item>
                 <Item key="favorites">
                   <Link to={'/tools/favorites'}>收藏夹</Link>
