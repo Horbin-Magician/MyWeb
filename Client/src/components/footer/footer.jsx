@@ -25,7 +25,7 @@ class Footer extends Component {
         </Col>
         <Col>
           <Link to="/about">
-            ©2021 Horbin
+            ©2021 Clouders
           </Link>
         </Col>
       </Row>
